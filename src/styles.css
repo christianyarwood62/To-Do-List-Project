@@ -1,0 +1,11 @@
+body {
+    display: flex;
+    margin: 0px;
+}
+
+#sidebar {
+    background-color: rgb(135, 135, 255);
+    padding: 10px;
+    height: 100vh;
+    width: 300px;
+}
