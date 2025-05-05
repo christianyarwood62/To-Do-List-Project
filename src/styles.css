@@ -15,8 +15,14 @@ body {
     box-sizing: border-box;
     width: calc(100% - 300px);
 }
+
 .projects-list {
     height: 200px;
     width: 100%;
     background-color: lightblue;
+    display: flex;
+}
+
+.projects-list-headers {
+    display: flex;
 }

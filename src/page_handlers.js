@@ -19,21 +19,26 @@ export function renderFrontPage() {
     projectsDiv.classList.add('projects-list')
     content.appendChild(projectsDiv);
 
-    // Create columns for the project list
-    const projectColumn = document.createElement('div');
-    projectsDiv.appendChild(projectColumn);
-    projectColumn.classList.add('project-list-column');
-    const dueDateColumn = document.createElement('div');
-    projectsDiv.appendChild(dueDateColumn);
-    dueDateColumn.classList.add('project-duedate-column');
-
-    // Create a project title header for the project table
+    // Create a row of headers for the project list
+    const projectsList = document.querySelector('.projects-list');
+    const projectHeaders = document.createElement('div');
+    projectHeaders.classList.add('projects-list-headers')
     const projectTitle = document.createElement('h2');
     projectTitle.textContent = 'Project';
-    projectColumn.appendChild(projectTitle);
-
-    // Create a due date header for the project table
+    projectHeaders.appendChild(projectTitle);
     const projectDueDate = document.createElement('h2');
     projectDueDate.textContent = 'Due Date';
-    dueDateColumn.appendChild(projectDueDate);
+    projectHeaders.appendChild(projectDueDate);
+    projectsList.appendChild(projectHeaders);
+}
+
+export function refreshProjectList() {
+    projectTable.forEach(element => {
+        const project = document.createElement('div');
+        const newProjectTitle = document.createElement('p');
+        const newProjectDueDate = document.createElement('p');
+        newProjectTitle.textContent = element.title;
+        newProjectDueDate.textContent = element.dueDate;
+        
+    });
 }

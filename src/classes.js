@@ -1,3 +1,10 @@
+export class ToDoProject {
+    constructor(title, dueDate) {
+        this.title = title;
+        this.dueDate = dueDate;
+    }
+}
+
 export class ToDoItem {
     constructor(title, description, dueDate, priority, checklist) {
         this.title = title;
