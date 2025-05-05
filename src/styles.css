@@ -20,9 +20,16 @@ body {
     height: 200px;
     width: 100%;
     background-color: lightblue;
+}
+
+.projects-list-row {
     display: flex;
 }
 
-.projects-list-headers {
-    display: flex;
+.project-title-column {
+    width: 400px;
+}
+
+.project-date-column {
+    width: 300px
 }
