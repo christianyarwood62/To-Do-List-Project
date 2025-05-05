@@ -1,7 +1,10 @@
 export class ToDoProject {
-    constructor(title, dueDate) {
+    constructor(checked, title, dueDate) {
+        let checkedInput = false;
+        this.checked = checkedInput;
         this.title = title;
         this.dueDate = dueDate;
+        this.id = crypto.randomUUID();
     }
 }
 

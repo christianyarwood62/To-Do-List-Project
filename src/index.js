@@ -1,8 +1,8 @@
 import "./styles.css";
 import { ToDoItem, ToDoProject } from './classes.js';
-import { renderFrontPage, refreshProjectList } from "./page_handlers.js";
+import { renderFrontPage } from "./page_handlers.js";
 import { showSideBar } from "./sidebar.js";
-import { addProjectToContent, showProjectDialog, addProjectToTable } from "./ToDo_Project_handlers.js";
+import { showProjectDialog, addProjectToArray, refreshProjectList, removeProjectFromTable} from "./ToDo_Project_handlers.js";
 
 // Declares an empty array in the global scope (i.e. the window)
 const projectTable = [];
@@ -27,11 +27,9 @@ addProjectBtn.addEventListener('click', (event) => {
     const projectListNoHeader = document.querySelector('.project-list-content');
     projectListNoHeader.innerHTML = '';
     event.preventDefault();
-    addProjectToTable();
+    addProjectToArray();
     projectDialog.close();
     refreshProjectList();
 })
-
-
 
 
