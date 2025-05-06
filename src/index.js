@@ -25,9 +25,11 @@ const projectDialog = document.querySelector('#project-dialog');
 const addProjectBtn = document.querySelector('#add-project-to-table-btn');
 addProjectBtn.addEventListener('click', (event) => {
     const projectListNoHeader = document.querySelector('.project-list-content');
+    const projectForm = document.querySelector('#project-form');
     projectListNoHeader.innerHTML = '';
     event.preventDefault();
     addProjectToArray();
+    projectForm.reset();
     projectDialog.close();
     refreshProjectList();
 })
