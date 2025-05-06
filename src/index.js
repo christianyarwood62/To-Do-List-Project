@@ -1,7 +1,7 @@
 import "./styles.css";
 import { ToDoItem, ToDoProject } from './classes.js';
 import { renderFrontPage } from "./page_handlers.js";
-import { showSideBar } from "./sidebar.js";
+import { showSideBar, addProjectToSidebar } from "./sidebar.js";
 import { showProjectDialog, addProjectToArray, refreshProjectList, removeProjectFromTable} from "./ToDo_Project_handlers.js";
 
 // Declares an empty array in the global scope (i.e. the window)
@@ -35,3 +35,4 @@ addProjectBtn.addEventListener('click', (event) => {
 })
 
 
+addProjectToSidebar()

@@ -1,9 +1,12 @@
 import { ToDoProject } from "./classes";
+import { format } from "date-fns";
+import { addProjectToSidebar } from "./sidebar";
 
 // Function to display a prompt for adding a new project
 export function showProjectDialog() {
     const projectDialog = document.querySelector('#project-dialog');
     projectDialog.showModal();
+
 }
 
 export function addProjectToArray() {
@@ -45,6 +48,9 @@ export function refreshProjectList() {
             content.innerHTML = '';
             refreshProjectList();
         })
+
+        // Add the project to the sidebar
+        addProjectToSidebar();
     });
 }
 
