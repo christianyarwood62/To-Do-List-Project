@@ -16,20 +16,20 @@ body {
     width: calc(100% - 300px);
 }
 
-.projects-list {
+.items-list {
     height: 200px;
     width: 100%;
     background-color: lightblue;
 }
 
-.projects-list-row {
+.items-list-row {
     display: flex;
 }
 
-.project-title-column {
+.item-title-column {
     width: 400px;
 }
 
-.project-date-column {
+.item-date-column {
     width: 300px
 }

@@ -1,38 +1,36 @@
 import "./styles.css";
 import { ToDoItem, ToDoProject } from './classes.js';
 import { renderFrontPage } from "./page_handlers.js";
-import { showSideBar, addProjectToSidebar } from "./sidebar.js";
-import { showProjectDialog, addProjectToArray, refreshProjectList, removeProjectFromTable} from "./ToDo_Project_handlers.js";
+import { showSideBar } from "./sidebar.js";
+import { showItemDialog, addItemToArray, refreshItemList, removeItemFromTable} from "./ToDo_Project_handlers.js";
 
 // Declares an empty array in the global scope (i.e. the window)
-const projectTable = [];
+const itemTable = [];
 if (typeof window !== 'undefined') {
-    window.projectTable = projectTable;
+    window.itemTable = itemTable;
 }
 
 // Initialise the front page with the projects area
 renderFrontPage();
-showSideBar();
+// showSideBar();
 
 // Event: shows a dialog form for adding projects to a table
-const addProjectToList = document.querySelector('.add-project-btn');
-addProjectToList.addEventListener('click', () => {
-    showProjectDialog();
+const addItemToList = document.querySelector('.add-item-btn');
+addItemToList.addEventListener('click', () => {
+    showItemDialog();
 })
 
 // Event: Add the input text for a new project to the table array
-const projectDialog = document.querySelector('#project-dialog');
-const addProjectBtn = document.querySelector('#add-project-to-table-btn');
-addProjectBtn.addEventListener('click', (event) => {
-    const projectListNoHeader = document.querySelector('.project-list-content');
-    const projectForm = document.querySelector('#project-form');
-    projectListNoHeader.innerHTML = '';
+const itemDialog = document.querySelector('#item-dialog');
+const addItemBtn = document.querySelector('#add-item-to-table-btn');
+addItemBtn.addEventListener('click', (event) => {
+    const itemListNoHeader = document.querySelector('.items-list-content');
+    const itemForm = document.querySelector('#item-form');
+    itemListNoHeader.innerHTML = '';
     event.preventDefault();
-    addProjectToArray();
-    projectForm.reset();
-    projectDialog.close();
-    refreshProjectList();
+    addItemToArray();
+    itemForm.reset();
+    itemDialog.close();
+    refreshItemList();
+    // addItemToSidebar();
 })
-
-
-addProjectToSidebar()
