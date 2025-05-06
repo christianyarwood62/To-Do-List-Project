@@ -37,9 +37,13 @@ export function refreshProjectList() {
         removeProjectBtn.classList.add('remove-project-btn');
         removeProjectBtn.textContent = 'X';
         project.appendChild(removeProjectBtn);
+        
         // Event: click on the X to remove the project from the table
         removeProjectBtn.addEventListener('click', () => {
             removeProjectFromTable(element);
+            const content = document.querySelector('.project-list-content');
+            content.innerHTML = '';
+            refreshProjectList();
         })
     });
 }
@@ -52,14 +56,4 @@ function removeProjectFromTable(project) {
             projectTable.splice(id, 1);
         }
     }
-    // Function: deletes the book from myLibrary
-// function deleteBook(book) {
-//     const confirmDelete = confirm("Are you sure you want to remove this book?");
-//             if (confirmDelete) {
-//                 const id = myLibrary.findIndex(item => item.id === book.id);
-//                 if (id !== -1) {
-//                     myLibrary.splice(id, 1);
-//         }
-//         }
-// }
 }
