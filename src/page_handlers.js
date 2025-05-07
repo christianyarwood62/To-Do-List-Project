@@ -1,4 +1,4 @@
-import { itemTable, removeItemFromArray } from "./ToDo_Project_handlers";
+import { itemTable, addItemToArray, removeItemFromArray } from "./ToDo_Project_handlers";
 
 export function renderProjects() {
     const content = document.querySelector('#content');
@@ -88,7 +88,7 @@ export function renderFrontPage() {
     })
 }
 
-// Function to display a prompt for adding a new project
+// Function to display a prompt for adding a new item
 function showItemDialog() {
     const itemDialog = document.querySelector('#item-dialog');
     itemDialog.showModal();
@@ -113,13 +113,13 @@ function refreshItemList() {
         item.appendChild(newItemDueDate);
         itemListNoHeader.appendChild(item);
 
-        // Create a remove button for each project
+        // Create a remove button for each to do item
         const removeItemBtn = document.createElement('p');
         removeItemBtn.classList.add('remove-item-btn');
         removeItemBtn.textContent = 'X';
         item.appendChild(removeItemBtn);
-        
-        // Event: click on the X to remove the project from the table
+
+        // Event: click on the X to remove the item from the table
         removeItemBtn.addEventListener('click', () => {
             removeItemFromArray(element);
             const content = document.querySelector('.items-list-content');
@@ -131,7 +131,7 @@ function refreshItemList() {
 }
 
 
-// Event: Add the input text for a new project to the table array
+// Event: Display the new array of to do items
 const itemDialog = document.querySelector('#item-dialog');
 const addItemBtn = document.querySelector('#add-item-to-table-btn');
 addItemBtn.addEventListener('click', (event) => {
@@ -139,6 +139,8 @@ addItemBtn.addEventListener('click', (event) => {
     const itemForm = document.querySelector('#item-form');
     itemListNoHeader.innerHTML = '';
     event.preventDefault();
+    addItemToArray();
+    console.log(itemTable);
     itemForm.reset();
     itemDialog.close();
     refreshItemList();
