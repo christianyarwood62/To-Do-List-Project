@@ -6,21 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="sidebar"></div>
+    <div id="sidebar">
+        <dialog id="project-dialog">
+            <form id="project-form">
+                <div class="project-form-container">
+                    <label for="project-title-input"></label>
+                    <input id = 'project-title-input' type="text">
+                </div>
+                <div class="project-form-container">
+                    <label for="project-duedate-input"></label>
+                    <input id = 'project-duedate-input' type="date">
+                </div>
+                <button id="add-project-to-table-btn">Add a Project</button>
+            </form>
+        </dialog>
+    </div>
     <div id="content"></div>
-    <dialog id="project-dialog">
-        <form id="project-form">
-            <div class="project-form-container">
-                <label for="project-title-input"></label>
-                <input id = 'project-title-input' type="text">
-            </div>
-            <div class="project-form-container">
-                <label for="project-duedate-input"></label>
-                <input id = 'project-duedate-input' type="date">
-            </div>
-            <button id="add-project-to-table-btn">Add a Project</button>
-        </form>
-    </dialog>
     <dialog id="item-dialog">
         <form id="item-form">
             <div class="item-form-container">

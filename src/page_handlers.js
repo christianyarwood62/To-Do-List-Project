@@ -1,6 +1,8 @@
 import { itemTable, addItemToArray, removeItemFromArray } from "./ToDo_item_data_handlers";
+import { projectTable } from "./project_data_handlers";
 
 export function renderGenericToDoList() {
+
     const content = document.querySelector('#content');
     content.innerHTML = '';
 
@@ -54,11 +56,13 @@ function showItemDialog() {
 
 }
 
-function refreshItemList() {
+export function refreshItemList() {
+    const itemListNoHeader = document.querySelector('.items-list-content');
+    itemListNoHeader.innerHTML = '';
     itemTable.forEach(element => {
         const itemsList = document.querySelector('.items-list');
         const item = document.createElement('div');
-        const itemListNoHeader = document.querySelector('.items-list-content');
+
         item.classList.add('items-list-row');
     
         const newItemTitle = document.createElement('p');
@@ -84,11 +88,13 @@ function refreshItemList() {
             const content = document.querySelector('.items-list-content');
             content.innerHTML = '';
             refreshItemList();
-            console.log(itemTable);
         })
     })
 }
 
+export function refreshItemList2() {
+
+}
 
 // Event: Display the new array of to do items
 const itemDialog = document.querySelector('#item-dialog');
@@ -96,10 +102,9 @@ const addItemBtn = document.querySelector('#add-item-to-table-btn');
 addItemBtn.addEventListener('click', (event) => {
     const itemListNoHeader = document.querySelector('.items-list-content');
     const itemForm = document.querySelector('#item-form');
-    itemListNoHeader.innerHTML = '';
+
     event.preventDefault();
     addItemToArray();
-    console.log(itemTable);
     itemForm.reset();
     itemDialog.close();
     refreshItemList();

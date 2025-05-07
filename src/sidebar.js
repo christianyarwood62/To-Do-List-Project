@@ -1,4 +1,4 @@
-import { renderGenericToDoList } from "./page_handlers";
+import { refreshItemList } from "./page_handlers";
 
 export function showSideBar() {
     const sideBarDiv = document.querySelector('#sidebar');
@@ -9,24 +9,35 @@ export function showSideBar() {
     sideBarDiv.appendChild(sideBarTitle); 
     sideBarDiv.appendChild(sidebarProjectContent);
 
-    const sideBarGenericItems = document.createElement('h3');
-    sideBarGenericItems.textContent = 'To Do Items';
-    sideBarDiv.appendChild(sideBarGenericItems);
-
-    sideBarGenericItems.addEventListener('click', () => {
-        renderGenericToDoList();
+    const addProjectBtn = document.createElement('button');
+    addProjectBtn.textContent = 'Add a Project';
+    sideBarDiv.appendChild(addProjectBtn);
+    addProjectBtn.addEventListener('click', () => {
+        const project = document.createElement('h3');
     })
 
+    // Create a sidebar project for generic to do items
+    const sideBarGenericItems = document.createElement('h3');
+    sideBarGenericItems.textContent = 'To Do Items';
+    sideBarGenericItems.classList.add('generic-items-project');
+    sideBarDiv.appendChild(sideBarGenericItems);
+    sideBarGenericItems.addEventListener('click', () => {
+        refreshItemList();
+        console.log('test');
+    })
 }
 
-export function addProjectToSidebar() {
-    const sidebarProjectContent = document.querySelector('.sidebar-projects-content');
-    sidebarProjectContent.innerHTML = '';
-    itemTable.forEach(project => {
-        const sidebar = document.querySelector('#sidebar');
-        const sidebarProject = document.createElement('h3');
-        sidebarProject.textContent = project.title;
-        sidebarProjectContent.appendChild(sidebarProject);
-    });
+// Event: Add a project to the sidebar
 
-}
+
+// export function addProjectToSidebar() {
+//     const sidebarProjectContent = document.querySelector('.sidebar-projects-content');
+//     sidebarProjectContent.innerHTML = '';
+//     itemTable.forEach(project => {
+//         const sidebar = document.querySelector('#sidebar');
+//         const sidebarProject = document.createElement('h3');
+//         sidebarProject.textContent = project.title;
+//         sidebarProjectContent.appendChild(sidebarProject);
+//     });
+// 
+// }
