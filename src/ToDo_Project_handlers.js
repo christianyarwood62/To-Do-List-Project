@@ -20,9 +20,6 @@ export class ToDoItem {
 //     itemTable.push(newItem);
 // }
 
-function AddItemtoProjectArray() {
-    console.log(initialProjectTable);
-}
 
 const addItemtoArrayBtn = document.querySelector('#add-item-to-table-btn');
 addItemtoArrayBtn.addEventListener('click', () => {
@@ -33,12 +30,14 @@ addItemtoArrayBtn.addEventListener('click', () => {
     console.log(itemTable);
 })
 
-function removeItemFromTable(item) {
+export function removeItemFromArray(element) {
     const confirmDelete = confirm('Are you sure you want to remove this item?');
     if (confirmDelete) {
-        const id = itemTable.findIndex(item => item.id === item.id);
-        if (id !== -1) {
-            itemTable.splice(id, 1);
+        const itemIndex = itemTable.findIndex(item => item.id === element.id);
+        // console.log(ToDoItem.id);
+        // console.log()
+        if (itemIndex !== -1) {
+            itemTable.splice(itemIndex, 1);
         }
     }
 }

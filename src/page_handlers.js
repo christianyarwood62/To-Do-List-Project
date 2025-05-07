@@ -1,4 +1,4 @@
-import { itemTable } from "./ToDo_Project_handlers";
+import { itemTable, removeItemFromArray } from "./ToDo_Project_handlers";
 
 export function renderProjects() {
     const content = document.querySelector('#content');
@@ -121,10 +121,11 @@ function refreshItemList() {
         
         // Event: click on the X to remove the project from the table
         removeItemBtn.addEventListener('click', () => {
-            removeItemFromTable(element);
+            removeItemFromArray(element);
             const content = document.querySelector('.items-list-content');
             content.innerHTML = '';
             refreshItemList();
+            console.log(itemTable);
         })
     })
 }
@@ -138,8 +139,6 @@ addItemBtn.addEventListener('click', (event) => {
     const itemForm = document.querySelector('#item-form');
     itemListNoHeader.innerHTML = '';
     event.preventDefault();
-    // addItemToArray();
-    // AddItemtoProjectArray();
     itemForm.reset();
     itemDialog.close();
     refreshItemList();

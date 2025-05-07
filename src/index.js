@@ -10,11 +10,11 @@ import { createItemObject, showItemDialog, addItemToArray, refreshItemList, remo
 //     window.itemTable = itemTable;
 // }
 
-// Declares an empty array for projects in the global scope (i.e. the window)
-const initialProjectTable = [];
-if (typeof window !== 'undefined') {
-    window.initialProjectTable = initialProjectTable;
-}
+// // Declares an empty array for projects in the global scope (i.e. the window)
+// const initialProjectTable = [];
+// if (typeof window !== 'undefined') {
+//     window.initialProjectTable = initialProjectTable;
+// }
 
 // Initialise the front page with the items area
 renderFrontPage();
