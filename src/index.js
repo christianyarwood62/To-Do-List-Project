@@ -2,35 +2,21 @@ import "./styles.css";
 import { ToDoItem, ToDoProject } from './classes.js';
 import { renderFrontPage } from "./page_handlers.js";
 import { showSideBar } from "./sidebar.js";
-import { showItemDialog, addItemToArray, refreshItemList, removeItemFromTable} from "./ToDo_Project_handlers.js";
+import { createItemObject, showItemDialog, addItemToArray, refreshItemList, removeItemFromTable, AddItemtoProjectArray} from "./ToDo_Project_handlers.js";
 
-// Declares an empty array in the global scope (i.e. the window)
-const itemTable = [];
+// // Declares an empty array for items in the global scope (i.e. the window)
+// const itemTable = [];
+// if (typeof window !== 'undefined') {
+//     window.itemTable = itemTable;
+// }
+
+// Declares an empty array for projects in the global scope (i.e. the window)
+const initialProjectTable = [];
 if (typeof window !== 'undefined') {
-    window.itemTable = itemTable;
+    window.initialProjectTable = initialProjectTable;
 }
 
-// Initialise the front page with the projects area
+// Initialise the front page with the items area
 renderFrontPage();
-// showSideBar();
+showSideBar();
 
-// Event: shows a dialog form for adding projects to a table
-const addItemToList = document.querySelector('.add-item-btn');
-addItemToList.addEventListener('click', () => {
-    showItemDialog();
-})
-
-// Event: Add the input text for a new project to the table array
-const itemDialog = document.querySelector('#item-dialog');
-const addItemBtn = document.querySelector('#add-item-to-table-btn');
-addItemBtn.addEventListener('click', (event) => {
-    const itemListNoHeader = document.querySelector('.items-list-content');
-    const itemForm = document.querySelector('#item-form');
-    itemListNoHeader.innerHTML = '';
-    event.preventDefault();
-    addItemToArray();
-    itemForm.reset();
-    itemDialog.close();
-    refreshItemList();
-    // addItemToSidebar();
-})

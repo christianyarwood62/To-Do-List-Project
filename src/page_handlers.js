@@ -1,3 +1,5 @@
+import { itemTable } from "./ToDo_Project_handlers";
+
 export function renderProjects() {
     const content = document.querySelector('#content');
 
@@ -80,4 +82,66 @@ export function renderFrontPage() {
 
     itemsList.appendChild(itemsHeaders);
     itemsList.appendChild(itemsListNoHeader);
+
+    addItemBtn.addEventListener('click', () => {
+        showItemDialog();
+    })
 }
+
+// Function to display a prompt for adding a new project
+function showItemDialog() {
+    const itemDialog = document.querySelector('#item-dialog');
+    itemDialog.showModal();
+
+}
+
+function refreshItemList() {
+    itemTable.forEach(element => {
+        const itemsList = document.querySelector('.items-list');
+        const item = document.createElement('div');
+        const itemListNoHeader = document.querySelector('.items-list-content');
+        item.classList.add('items-list-row');
+    
+        const newItemTitle = document.createElement('p');
+        const newItemDueDate = document.createElement('p');
+        const itemChecked = document.createElement('input')
+        newItemTitle.classList.add('item-title-column');
+        newItemDueDate.classList.add('item-date-column');
+        newItemTitle.textContent = element.title;
+        newItemDueDate.textContent = element.dueDate;
+        item.appendChild(newItemTitle);
+        item.appendChild(newItemDueDate);
+        itemListNoHeader.appendChild(item);
+
+        // Create a remove button for each project
+        const removeItemBtn = document.createElement('p');
+        removeItemBtn.classList.add('remove-item-btn');
+        removeItemBtn.textContent = 'X';
+        item.appendChild(removeItemBtn);
+        
+        // Event: click on the X to remove the project from the table
+        removeItemBtn.addEventListener('click', () => {
+            removeItemFromTable(element);
+            const content = document.querySelector('.items-list-content');
+            content.innerHTML = '';
+            refreshItemList();
+        })
+    })
+}
+
+
+// Event: Add the input text for a new project to the table array
+const itemDialog = document.querySelector('#item-dialog');
+const addItemBtn = document.querySelector('#add-item-to-table-btn');
+addItemBtn.addEventListener('click', (event) => {
+    const itemListNoHeader = document.querySelector('.items-list-content');
+    const itemForm = document.querySelector('#item-form');
+    itemListNoHeader.innerHTML = '';
+    event.preventDefault();
+    // addItemToArray();
+    // AddItemtoProjectArray();
+    itemForm.reset();
+    itemDialog.close();
+    refreshItemList();
+    // addItemToSidebar();
+})

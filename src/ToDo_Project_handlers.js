@@ -1,57 +1,37 @@
-import { ToDoItem } from "./classes";
 import { format } from "date-fns";
 // import { addItemToSidebar } from "./sidebar";
 
-// Function to display a prompt for adding a new project
-export function showItemDialog() {
-    const itemDialog = document.querySelector('#item-dialog');
-    itemDialog.showModal();
+export const itemTable = [];
 
+export class ToDoItem {
+    constructor(checked, title, dueDate) {
+        let checkedInput = false;
+        this.checked = checkedInput;
+        this.title = title;
+        this.dueDate = dueDate;
+        this.id = crypto.randomUUID();
+    }
 }
 
-export function addItemToArray() {
+// function addItemToArray() {
+//     const itemTitle = document.querySelector('#item-title-input').value;
+//     const itemDueDate = document.querySelector('#item-duedate-input').value;
+//     const newItem = new ToDoItem(false, itemTitle, itemDueDate);
+//     itemTable.push(newItem);
+// }
+
+function AddItemtoProjectArray() {
+    console.log(initialProjectTable);
+}
+
+const addItemtoArrayBtn = document.querySelector('#add-item-to-table-btn');
+addItemtoArrayBtn.addEventListener('click', () => {
     const itemTitle = document.querySelector('#item-title-input').value;
     const itemDueDate = document.querySelector('#item-duedate-input').value;
     const newItem = new ToDoItem(false, itemTitle, itemDueDate);
     itemTable.push(newItem);
-}
-
-export function refreshItemList() {
-    itemTable.forEach(element => {
-        const itemsList = document.querySelector('.items-list');
-        const item = document.createElement('div');
-        const itemListNoHeader = document.querySelector('.items-list-content');
-        item.classList.add('items-list-row');
-    
-        const newItemTitle = document.createElement('p');
-        const newItemDueDate = document.createElement('p');
-        const itemChecked = document.createElement('input')
-        newItemTitle.classList.add('item-title-column');
-        newItemDueDate.classList.add('item-date-column');
-        newItemTitle.textContent = element.title;
-        newItemDueDate.textContent = element.dueDate;
-        item.appendChild(newItemTitle);
-        item.appendChild(newItemDueDate);
-        itemListNoHeader.appendChild(item);
-
-        // Create a remove button for each project
-        const removeItemBtn = document.createElement('p');
-        removeItemBtn.classList.add('remove-item-btn');
-        removeItemBtn.textContent = 'X';
-        item.appendChild(removeItemBtn);
-        
-        // Event: click on the X to remove the project from the table
-        removeItemBtn.addEventListener('click', () => {
-            removeItemFromTable(element);
-            const content = document.querySelector('.items-list-content');
-            content.innerHTML = '';
-            refreshItemList();
-        })
-
-        // Add the project to the sidebar
-        // addItemToSidebar();
-    });
-}
+    console.log(itemTable);
+})
 
 function removeItemFromTable(item) {
     const confirmDelete = confirm('Are you sure you want to remove this item?');
@@ -62,3 +42,15 @@ function removeItemFromTable(item) {
         }
     }
 }
+
+// export function createItemObject() {
+//     const itemTable = [];
+//     if (typeof window !== 'undefined') {
+//         window.itemTable = itemTable;
+//     }
+//     // Declares an empty array for projects in the global scope (i.e. the window)
+//     const initialProjectTable = [];
+//     if (typeof window !== 'undefined') {
+//         window.initialProjectTable = initialProjectTable;
+//     }
+// }
