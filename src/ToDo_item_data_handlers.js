@@ -1,8 +1,27 @@
 import { format } from "date-fns";
-import { projectTable } from "./project_data_handlers";
 // import { addItemToSidebar } from "./sidebar";
 
+const projectTable = [{'project title': 'generic-items', items: []}];
 export const itemTable = [];
+projectTable[0].items.push(itemTable);
+// console.log(projectTable[0].items);
+
+// function createProject() {
+//     const project = {'project title': 2, 'items': 2}
+//     console.log(project);
+// }
+// createProject();
+// // export function addProjectToArray() {
+// //     createItemTable();
+// // }
+
+
+// export function addItemsToProject() {
+//     const newItemsArray = [];
+//     projectTable.items = [];
+//     console.log(projectTable);
+// }
+// addItemsToProject();
 
 export class ToDoItem {
     constructor(checked, title, dueDate) {
@@ -14,18 +33,41 @@ export class ToDoItem {
     }
 }
 
+export class ToDoProject {
+    constructor(projectTitle, toDoItems, dueDate) {
+        this.projectTitle = projectTitle;
+        this.toDoItems = [];
+        this.dueDate = dueDate;
+    }
+
+    addItemToProjectList(item) {
+        this.toDoItems.push([item]);
+    }
+
+    displayProject() {
+        const test = document.createElement('p');
+        test.textContent = this.projectTitle;
+        // testnew.textContent = 'test';
+        // test.appendChild(testnew);
+    }
+}
+
+const firstProject = new ToDoProject('Generic To Do List', [],'01/01');
+const newItem = new ToDoItem(false, 'first Item', '01/01');
+const item2 = new ToDoItem(false, '2nd Item', '02/02');
+firstProject.addItemToProjectList(newItem);
+firstProject.addItemToProjectList(item2);
+console.log(firstProject);
+firstProject.displayProject();
+
 // Function: to add a new item from a prompt to an array of to do items
 export function addItemToArray() {
     const itemTitle = document.querySelector('#item-title-input').value;
     const itemDueDate = document.querySelector('#item-duedate-input').value;
     const newItem = new ToDoItem(false, itemTitle, itemDueDate);
     itemTable.push(newItem);
-    projectTable.items.push(itemTable);
+    // projectTable.push(itemTable);
     console.log(projectTable);
-}
-
-export function addItemsToProject() {
-
 }
 
 // Function: when clicking the remove button on a to do item, removes it from the array

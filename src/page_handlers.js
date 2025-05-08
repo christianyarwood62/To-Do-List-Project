@@ -1,53 +1,53 @@
-import { itemTable, addItemToArray, removeItemFromArray } from "./ToDo_item_data_handlers";
+import { itemTable, addItemToArray, removeItemFromArray, ToDoProject, ToDoItem } from "./ToDo_item_data_handlers";
 import { projectTable } from "./project_data_handlers";
 
-export function renderGenericToDoList() {
+// export function renderGenericToDoList() {
 
-    const content = document.querySelector('#content');
-    content.innerHTML = '';
+    // const content = document.querySelector('#content');
+    // content.innerHTML = '';
 
-    // Creates the title for the front page
-    const titleDiv = document.createElement('div');
-    const frontPageTitle = document.createElement('h1');
-    frontPageTitle.textContent = 'To Do Items';
-    content.appendChild(titleDiv);
-    titleDiv.appendChild(frontPageTitle);
+    // // Creates the title for the front page
+    // const titleDiv = document.createElement('div');
+    // const frontPageTitle = document.createElement('h1');
+    // frontPageTitle.textContent = 'To Do Items';
+    // content.appendChild(titleDiv);
+    // titleDiv.appendChild(frontPageTitle);
 
-    // Add a button to add a item to the table
-    const addItemBtn = document.createElement('button');
-    addItemBtn.textContent = 'Add an Item';
-    addItemBtn.classList.add('add-item-btn');
-    titleDiv.appendChild(addItemBtn);
+    // // Add a button to add a item to the table
+    // const addItemBtn = document.createElement('button');
+    // addItemBtn.textContent = 'Add an Item';
+    // addItemBtn.classList.add('add-item-btn');
+    // titleDiv.appendChild(addItemBtn);
 
-    // Create an area to hold the items
-    const itemsDiv = document.createElement('div');
-    itemsDiv.classList.add('items-list')
-    content.appendChild(itemsDiv);
+    // // Create an area to hold the items
+    // const itemsDiv = document.createElement('div');
+    // itemsDiv.classList.add('items-list')
+    // content.appendChild(itemsDiv);
 
-    // Create a row of headers for the item list
-    const itemsList = document.querySelector('.items-list');
-    const itemsHeaders = document.createElement('div');
-    const itemsDueDate = document.createElement('h2');
-    const itemsTitle = document.createElement('h2');
-    const itemsListNoHeader = document.createElement('div');
-    itemsHeaders.classList.add('items-list-row');
-    itemsTitle.classList.add('item-title-column');
-    itemsDueDate.classList.add('item-date-column');
-    itemsListNoHeader.classList.add('items-list-content');
+    // // Create a row of headers for the item list
+    // const itemsList = document.querySelector('.items-list');
+    // const itemsHeaders = document.createElement('div');
+    // const itemsDueDate = document.createElement('h2');
+    // const itemsTitle = document.createElement('h2');
+    // const itemsListNoHeader = document.createElement('div');
+    // itemsHeaders.classList.add('items-list-row');
+    // itemsTitle.classList.add('item-title-column');
+    // itemsDueDate.classList.add('item-date-column');
+    // itemsListNoHeader.classList.add('items-list-content');
 
-    itemsTitle.textContent = 'Item';
-    itemsHeaders.appendChild(itemsTitle);
+    // itemsTitle.textContent = 'Item';
+    // itemsHeaders.appendChild(itemsTitle);
 
-    itemsDueDate.textContent = 'Due Date';
-    itemsHeaders.appendChild(itemsDueDate);
+    // itemsDueDate.textContent = 'Due Date';
+    // itemsHeaders.appendChild(itemsDueDate);
 
-    itemsList.appendChild(itemsHeaders);
-    itemsList.appendChild(itemsListNoHeader);
+    // itemsList.appendChild(itemsHeaders);
+    // itemsList.appendChild(itemsListNoHeader);
 
-    addItemBtn.addEventListener('click', () => {
-        showItemDialog();
-    })
-}
+    // addItemBtn.addEventListener('click', () => {
+    //     showItemDialog();
+    // })
+// }
 
 // Function to display a prompt for adding a new item
 function showItemDialog() {
@@ -92,9 +92,9 @@ export function refreshItemList() {
     })
 }
 
-export function refreshItemList2() {
+// export function refreshItemList2() {
 
-}
+// }
 
 // Event: Display the new array of to do items
 const itemDialog = document.querySelector('#item-dialog');
@@ -110,3 +110,55 @@ addItemBtn.addEventListener('click', (event) => {
     refreshItemList();
     // addItemToSidebar();
 })
+
+// Event: Show the generic to do items upon webpage initialisation
+addEventListener("DOMContentLoaded", (event) => {
+
+})
+
+export function createContentTemplate() {
+    const content = document.querySelector('#content');
+    // content.innerHTML = '';
+    console.log('test');
+    // Creates the title for the front page
+    const titleDiv = document.createElement('div');
+    const frontPageTitle = document.createElement('h1');
+    frontPageTitle.textContent = 'To Do Items';
+    content.appendChild(titleDiv);
+    titleDiv.appendChild(frontPageTitle);
+
+    // Add a button to add a item to the table
+    const addItemBtn = document.createElement('button');
+    addItemBtn.textContent = 'Add an Item';
+    addItemBtn.classList.add('add-item-btn');
+    titleDiv.appendChild(addItemBtn);
+
+    // Create an area to hold the items
+    const itemsDiv = document.createElement('div');
+    itemsDiv.classList.add('items-list')
+    content.appendChild(itemsDiv);
+
+    // Create a row of headers for the item list
+    const itemsList = document.querySelector('.items-list');
+    const itemsHeaders = document.createElement('div');
+    const itemsDueDate = document.createElement('h2');
+    const itemsTitle = document.createElement('h2');
+    const itemsListNoHeader = document.createElement('div');
+    itemsHeaders.classList.add('items-list-row');
+    itemsTitle.classList.add('item-title-column');
+    itemsDueDate.classList.add('item-date-column');
+    itemsListNoHeader.classList.add('items-list-content');
+
+    itemsTitle.textContent = 'Item';
+    itemsHeaders.appendChild(itemsTitle);
+
+    itemsDueDate.textContent = 'Due Date';
+    itemsHeaders.appendChild(itemsDueDate);
+
+    itemsList.appendChild(itemsHeaders);
+    itemsList.appendChild(itemsListNoHeader);
+
+    addItemBtn.addEventListener('click', () => {
+        showItemDialog();
+    })
+}

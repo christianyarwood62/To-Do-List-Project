@@ -1,1 +1,0 @@
-export const projectTable = {'project title': 'generic-items', 'items': []};
