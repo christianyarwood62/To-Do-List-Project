@@ -1,4 +1,4 @@
-import { itemTable, addItemToArray, removeItemFromArray, ToDoProject, ToDoItem } from "./ToDo_item_data_handlers";
+import { itemArray, addItemToArray, removeItemFromArray, ToDoProject, ToDoItem } from "./ToDo_item_data_handlers";
 
 // export function renderGenericToDoList() {
 
@@ -90,10 +90,6 @@ export function refreshItemList() {
         })
     })
 }
-
-// export function refreshItemList2() {
-
-// }
 
 // Event: Display the new array of to do items
 const itemDialog = document.querySelector('#item-dialog');

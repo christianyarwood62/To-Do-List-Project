@@ -1,11 +1,8 @@
 import { format } from "date-fns";
 // import { addItemToSidebar } from "./sidebar";
 
-const projectTable = [{'project title': 'generic-items', items: []}];
-export const itemTable = [];
-projectTable[0].items.push(itemTable);
-console.log(projectTable);
-// console.log(projectTable[0].items);
+export const itemArray = [];
+
 
 // function createProject() {
 //     const project = {'project title': 2, 'items': 2}
@@ -37,13 +34,13 @@ export class ToDoItem {
     }
 
     addItemToArray(item) {
-        itemTable.push(item);
+        itemArray.push(item);
         console.log('Successfully added an item to the Items Array');
-        console.log(itemTable);
+        console.log(itemArray);
     }
 
     removeItemfromArray(item) {
-        itemTable.splice(item, 1)
+        itemArray.splice(item, 1)
         console.log('Successfully removed an item to the Items Array');
     }
 
@@ -73,11 +70,11 @@ export class ToDoItem {
 
         // Event: click on the X to remove the item from the table
         removeItemBtn.addEventListener('click', () => {
-            console.log(itemTable);
+            // const id = itemArray.findIndex(item => item.id === book.id);
+            console.log(itemArray);
             // removeItemFromArray(element);
             // const content = document.querySelector('.items-list-content');
             // content.innerHTML = '';
-            console.log('test');
         })
     }
 }
