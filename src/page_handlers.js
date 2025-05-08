@@ -102,12 +102,14 @@ const addItemBtn = document.querySelector('#add-item-to-table-btn');
 addItemBtn.addEventListener('click', (event) => {
     const itemListNoHeader = document.querySelector('.items-list-content');
     const itemForm = document.querySelector('#item-form');
-
+    const itemTitle = document.querySelector('#item-title-input').value;
+    const itemDueDate = document.querySelector('#item-duedate-input').value;
+    const newItem = new ToDoItem(itemTitle, itemDueDate);
     event.preventDefault();
-    addItemToArray();
+    newItem.addItemToArrayTest();
     itemForm.reset();
     itemDialog.close();
-    refreshItemList();
+    // refreshItemList();
     // addItemToSidebar();
 })
 

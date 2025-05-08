@@ -4,6 +4,7 @@ import { format } from "date-fns";
 const projectTable = [{'project title': 'generic-items', items: []}];
 export const itemTable = [];
 projectTable[0].items.push(itemTable);
+console.log(projectTable);
 // console.log(projectTable[0].items);
 
 // function createProject() {
@@ -34,6 +35,14 @@ export class ToDoItem {
         this.dueDate = dueDate;
         this.id = crypto.randomUUID();
     }
+
+    addItemToArrayTest() {
+        const itemTitle = document.querySelector('#item-title-input').value;
+        const itemDueDate = document.querySelector('#item-duedate-input').value;
+        const newItem = new ToDoItem(false, itemTitle, itemDueDate);
+        console.log('Successfully added an item to the Items Array');
+        itemTable.push(newItem);
+    }
 }
 
 export class ToDoProject {
@@ -45,6 +54,7 @@ export class ToDoProject {
 
     addItemToProjectList(item) {
         this.toDoItems.push([item]);
+        console.log('Successfully added a item to the project')
     }
 
     displayProject() {
@@ -56,7 +66,7 @@ export class ToDoProject {
 
     addProjectToProjectArray() {
         projectsArray.push({projectTitle: this.projectTitle, toDoItems: this.toDoItems, dueDate: this.dueDate});
-        console.log(projectsArray);
+        console.log('successfully added a project to the project array');
     }
 
     // test() {
