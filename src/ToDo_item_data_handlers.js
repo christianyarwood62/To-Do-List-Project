@@ -36,12 +36,42 @@ export class ToDoItem {
         this.id = crypto.randomUUID();
     }
 
-    addItemToArrayTest() {
-        const itemTitle = document.querySelector('#item-title-input').value;
-        const itemDueDate = document.querySelector('#item-duedate-input').value;
-        const newItem = new ToDoItem(false, itemTitle, itemDueDate);
+    addItemToArrayTest(item) {
         console.log('Successfully added an item to the Items Array');
-        itemTable.push(newItem);
+        itemTable.push(item);
+    }
+
+    displayItemInTable(itemCheck, itemTitle, itemDueDate) {
+        const itemsList = document.querySelector('.items-list');
+        const itemDiv = document.createElement('div');
+        const itemListNoHeader = document.querySelector('.items-list-content');
+
+        itemDiv.classList.add('items-list-row');
+    
+        const newItemTitle = document.createElement('p');
+        const newItemDueDate = document.createElement('p');
+        const itemChecked = document.createElement('input')
+        newItemTitle.classList.add('item-title-column');
+        newItemDueDate.classList.add('item-date-column');
+        newItemTitle.textContent = itemTitle;
+        newItemDueDate.textContent = itemDueDate;
+        itemDiv.appendChild(newItemTitle);
+        itemDiv.appendChild(newItemDueDate);
+        itemListNoHeader.appendChild(itemDiv);
+
+        // Create a remove button for each to do item
+        const removeItemBtn = document.createElement('p');
+        removeItemBtn.classList.add('remove-item-btn');
+        removeItemBtn.textContent = 'X';
+        itemDiv.appendChild(removeItemBtn);
+
+        // Event: click on the X to remove the item from the table
+        removeItemBtn.addEventListener('click', () => {
+            removeItemFromArray(element);
+            const content = document.querySelector('.items-list-content');
+            content.innerHTML = '';
+            refreshItemList();
+        })
     }
 }
 

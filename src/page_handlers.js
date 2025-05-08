@@ -1,5 +1,4 @@
 import { itemTable, addItemToArray, removeItemFromArray, ToDoProject, ToDoItem } from "./ToDo_item_data_handlers";
-import { projectTable } from "./project_data_handlers";
 
 // export function renderGenericToDoList() {
 
@@ -104,11 +103,14 @@ addItemBtn.addEventListener('click', (event) => {
     const itemForm = document.querySelector('#item-form');
     const itemTitle = document.querySelector('#item-title-input').value;
     const itemDueDate = document.querySelector('#item-duedate-input').value;
-    const newItem = new ToDoItem(itemTitle, itemDueDate);
+
     event.preventDefault();
+    const newItem = new ToDoItem(false, itemTitle, itemDueDate);
     newItem.addItemToArrayTest();
     itemForm.reset();
     itemDialog.close();
+    console.log(newItem);
+    newItem.displayItemInTable(newItem.checked, newItem.title, newItem.dueDate);
     // refreshItemList();
     // addItemToSidebar();
 })

@@ -1,5 +1,4 @@
 // import { refreshItemList } from "./page_handlers";
-import { addProjectToArray } from "./project_data_handlers";
 import { projectsArray, ToDoProject } from "./ToDo_item_data_handlers";
 
 export function showSideBar() {
