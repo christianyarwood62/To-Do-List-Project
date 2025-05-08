@@ -111,15 +111,9 @@ addItemBtn.addEventListener('click', (event) => {
     // addItemToSidebar();
 })
 
-// Event: Show the generic to do items upon webpage initialisation
-addEventListener("DOMContentLoaded", (event) => {
-
-})
-
 export function createContentTemplate() {
     const content = document.querySelector('#content');
-    // content.innerHTML = '';
-    console.log('test');
+    content.innerHTML = '';
     // Creates the title for the front page
     const titleDiv = document.createElement('div');
     const frontPageTitle = document.createElement('h1');

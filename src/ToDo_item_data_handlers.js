@@ -23,6 +23,9 @@ projectTable[0].items.push(itemTable);
 // }
 // addItemsToProject();
 
+// Initialise an empty array for projects to populate
+export const  projectsArray = [];
+
 export class ToDoItem {
     constructor(checked, title, dueDate) {
         let checkedInput = false;
@@ -50,15 +53,39 @@ export class ToDoProject {
         // testnew.textContent = 'test';
         // test.appendChild(testnew);
     }
+
+    addProjectToProjectArray() {
+        projectsArray.push({projectTitle: this.projectTitle, toDoItems: this.toDoItems, dueDate: this.dueDate});
+        console.log(projectsArray);
+    }
+
+    // test() {
+    //     console.log(projectsArray);
+    // }
 }
 
-const firstProject = new ToDoProject('Generic To Do List', [],'01/01');
-const newItem = new ToDoItem(false, 'first Item', '01/01');
-const item2 = new ToDoItem(false, '2nd Item', '02/02');
-firstProject.addItemToProjectList(newItem);
-firstProject.addItemToProjectList(item2);
-console.log(firstProject);
-firstProject.displayProject();
+
+// const newItem = new ToDoItem(false, 'first Item', '01/01');
+// const item2 = new ToDoItem(false, '2nd Item', '02/02');
+// firstProject.addItemToProjectList(newItem);
+// firstProject.addItemToProjectList(item2);
+// console.log(firstProject);
+// firstProject.displayProject();
+
+// For use in DOM intialisation
+export function createGenericItemsProject() {
+    const firstProject = new ToDoProject('Generic To Do List', [],'01/01');
+    // firstProject.test();
+    console.log(firstProject);
+}
+
+// for use in DOM in initialisation
+export function createProjectsArray() {
+    const projectsArray = [];
+    console.log(projectsArray);
+    return projectsArray;
+}
+
 
 // Function: to add a new item from a prompt to an array of to do items
 export function addItemToArray() {

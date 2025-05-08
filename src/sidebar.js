@@ -1,6 +1,6 @@
 // import { refreshItemList } from "./page_handlers";
 import { addProjectToArray } from "./project_data_handlers";
-import { createItemTable } from "./ToDo_item_data_handlers";
+import { projectsArray, ToDoProject } from "./ToDo_item_data_handlers";
 
 export function showSideBar() {
     const sideBarDiv = document.querySelector('#sidebar');
@@ -15,10 +15,13 @@ export function showSideBar() {
     addProjectBtn.textContent = 'Add a Project';
     sideBarDiv.appendChild(addProjectBtn);
     addProjectBtn.addEventListener('click', (event) => {
-        const projectDialog = document.querySelector('#project-dialog');
-        const projectForm = document.querySelector('#project-form');
-        projectDialog.showModal();
-        event.preventDefault();
+        // const projectDialog = document.querySelector('#project-dialog');
+        // const projectForm = document.querySelector('#project-form');
+        // projectDialog.showModal();
+        // event.preventDefault();
+
+        const project5 = new ToDoProject('test', [], '01/02/0202');
+        project5.addProjectToProjectArray();
     })
 
     // Create a sidebar project for generic to do items
@@ -27,7 +30,7 @@ export function showSideBar() {
     sideBarGenericItems.classList.add('generic-items-project');
     sideBarDiv.appendChild(sideBarGenericItems);
     sideBarGenericItems.addEventListener('click', () => {
-        refreshItemList();
+        // refreshItemList();
         console.log('test');
     })
 }
