@@ -36,9 +36,15 @@ export class ToDoItem {
         this.id = crypto.randomUUID();
     }
 
-    addItemToArrayTest(item) {
-        console.log('Successfully added an item to the Items Array');
+    addItemToArray(item) {
         itemTable.push(item);
+        console.log('Successfully added an item to the Items Array');
+        console.log(itemTable);
+    }
+
+    removeItemfromArray(item) {
+        itemTable.splice(item, 1)
+        console.log('Successfully removed an item to the Items Array');
     }
 
     displayItemInTable(itemCheck, itemTitle, itemDueDate) {
@@ -67,10 +73,11 @@ export class ToDoItem {
 
         // Event: click on the X to remove the item from the table
         removeItemBtn.addEventListener('click', () => {
-            removeItemFromArray(element);
-            const content = document.querySelector('.items-list-content');
-            content.innerHTML = '';
-            refreshItemList();
+            console.log(itemTable);
+            // removeItemFromArray(element);
+            // const content = document.querySelector('.items-list-content');
+            // content.innerHTML = '';
+            console.log('test');
         })
     }
 }

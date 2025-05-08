@@ -106,13 +106,10 @@ addItemBtn.addEventListener('click', (event) => {
 
     event.preventDefault();
     const newItem = new ToDoItem(false, itemTitle, itemDueDate);
-    newItem.addItemToArrayTest();
+    newItem.addItemToArray(newItem);
     itemForm.reset();
     itemDialog.close();
-    console.log(newItem);
     newItem.displayItemInTable(newItem.checked, newItem.title, newItem.dueDate);
-    // refreshItemList();
-    // addItemToSidebar();
 })
 
 export function createContentTemplate() {
