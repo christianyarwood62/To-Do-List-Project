@@ -1,8 +1,8 @@
 import "./styles.css";
 import { PageController } from "./controller.js";
 
-import { createGenericItemsProject, createProjectsArray } from "./data.js";
+document.addEventListener('DOMContentLoaded', () => {
+    const newController = new PageController();
+    // newController.view.renderListTemplate();
+})
 
-
-const newController = new PageController();
-newController.view.renderListTemplate();

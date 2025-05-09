@@ -7,5 +7,7 @@ export class PageController {
     constructor() {
         this.view = new ListView;
         this.toDoList = new ToDoItem;
+
+        this.view.renderListTemplate();
     }
 }
