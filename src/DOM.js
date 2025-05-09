@@ -9,5 +9,15 @@ export function createElement(elementType, className, idName, text) {
         element.id = `${idName}`;
     }
     element.textContent = text;
-    // return element;
+    return element;
+}
+
+export function selectElement(element) {
+    const selectedElement = document.querySelector(`${element}`);
+    return selectedElement;
+}
+
+export function createItemDiv() {
+    const itemDiv = document.createElement('div');
+    itemDiv.id = 'item-div';
 }
