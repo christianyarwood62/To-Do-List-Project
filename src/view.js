@@ -32,36 +32,3 @@ export class ListView {
         itemHeadersDiv.appendChild(completeCheckbox);
     }
 }
-
-export function showSideBar() {
-    const sideBarDiv = document.querySelector('#sidebar');
-    const sideBarTitle = document.createElement('h2');
-    const sidebarProjectContent = document.createElement('div');
-    sidebarProjectContent.classList.add('sidebar-projects-content')
-    sideBarTitle.textContent = 'Projects';
-    sideBarDiv.appendChild(sideBarTitle); 
-    sideBarDiv.appendChild(sidebarProjectContent);
-
-    const addProjectBtn = document.createElement('button');
-    addProjectBtn.textContent = 'Add a Project';
-    sideBarDiv.appendChild(addProjectBtn);
-    addProjectBtn.addEventListener('click', (event) => {
-        // const projectDialog = document.querySelector('#project-dialog');
-        // const projectForm = document.querySelector('#project-form');
-        // projectDialog.showModal();
-        // event.preventDefault();
-
-        const project5 = new ToDoProject('test', [], '01/02/0202');
-        project5.addProjectToProjectArray();
-    })
-
-    // Create a sidebar project for generic to do items
-    const sideBarGenericItems = document.createElement('h3');
-    sideBarGenericItems.textContent = 'To Do Items';
-    sideBarGenericItems.classList.add('generic-items-project');
-    sideBarDiv.appendChild(sideBarGenericItems);
-    sideBarGenericItems.addEventListener('click', () => {
-        // refreshItemList();
-        console.log('test');
-    })
-}
