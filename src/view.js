@@ -1,3 +1,4 @@
+import { add } from "date-fns";
 import * as DOM from "./DOM.js"
 
 export class ListView {
@@ -16,8 +17,11 @@ export class ListView {
 
 
         const pageHeader = DOM.createElement('h1', undefined, 'page-header', 'To Do List');
+        const addItemBtn = DOM.createElement('button', undefined, 'add-item-btn', 'Add an Item');
         content.appendChild(pageHeader);
+        content.appendChild(addItemBtn);
         content.appendChild(listDiv);
+
 
         const itemHeadersDiv = DOM.createElement('div', undefined, 'item-list-headers')
         listDiv.appendChild(itemHeadersDiv);
