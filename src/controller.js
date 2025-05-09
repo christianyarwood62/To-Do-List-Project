@@ -1,7 +1,7 @@
 // js file to handle all intermediate actions between the data and the view
 
 import { ToDoItem } from "./data";
-import { ListView } from "./view-new";
+import { ListView } from "./view";
 
 export class PageController {
     constructor() {
