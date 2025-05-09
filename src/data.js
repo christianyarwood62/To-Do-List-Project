@@ -1,25 +1,10 @@
+// js file to handle all data for the to do lists and projects
+
 import { format } from "date-fns";
 // import { addItemToSidebar } from "./sidebar";
 
 export const itemArray = [];
 
-
-// function createProject() {
-//     const project = {'project title': 2, 'items': 2}
-//     console.log(project);
-// }
-// createProject();
-// // export function addProjectToArray() {
-// //     createItemTable();
-// // }
-
-
-// export function addItemsToProject() {
-//     const newItemsArray = [];
-//     projectTable.items = [];
-//     console.log(projectTable);
-// }
-// addItemsToProject();
 
 // Initialise an empty array for projects to populate
 export const  projectsArray = [];
@@ -32,7 +17,6 @@ export class ToDoItem {
         this.dueDate = dueDate;
         this.id = crypto.randomUUID();
     }
-
     addItemToArray(item) {
         itemArray.push(item);
         console.log('Successfully added an item to the Items Array');
@@ -70,11 +54,7 @@ export class ToDoItem {
 
         // Event: click on the X to remove the item from the table
         removeItemBtn.addEventListener('click', () => {
-            // const id = itemArray.findIndex(item => item.id === book.id);
             console.log(itemArray);
-            // removeItemFromArray(element);
-            // const content = document.querySelector('.items-list-content');
-            // content.innerHTML = '';
         })
     }
 }
@@ -94,67 +74,16 @@ export class ToDoProject {
     displayProject() {
         const test = document.createElement('p');
         test.textContent = this.projectTitle;
-        // testnew.textContent = 'test';
-        // test.appendChild(testnew);
     }
 
     addProjectToProjectArray() {
         projectsArray.push({projectTitle: this.projectTitle, toDoItems: this.toDoItems, dueDate: this.dueDate});
         console.log('successfully added a project to the project array');
     }
-
-    // test() {
-    //     console.log(projectsArray);
-    // }
 }
-
-
-// const newItem = new ToDoItem(false, 'first Item', '01/01');
-// const item2 = new ToDoItem(false, '2nd Item', '02/02');
-// firstProject.addItemToProjectList(newItem);
-// firstProject.addItemToProjectList(item2);
-// console.log(firstProject);
-// firstProject.displayProject();
 
 // For use in DOM intialisation
 export function createGenericItemsProject() {
     const firstProject = new ToDoProject('Generic To Do List', [],'01/01');
-    // firstProject.test();
     console.log(firstProject);
-}
-
-// for use in DOM in initialisation
-export function createProjectsArray() {
-    const projectsArray = [];
-    console.log(projectsArray);
-    return projectsArray;
-}
-
-
-// Function: to add a new item from a prompt to an array of to do items
-export function addItemToArray() {
-    const itemTitle = document.querySelector('#item-title-input').value;
-    const itemDueDate = document.querySelector('#item-duedate-input').value;
-    const newItem = new ToDoItem(false, itemTitle, itemDueDate);
-    itemTable.push(newItem);
-    // projectTable.push(itemTable);
-    console.log(projectTable);
-}
-
-// Function: when clicking the remove button on a to do item, removes it from the array
-export function removeItemFromArray(element) {
-    const confirmDelete = confirm('Are you sure you want to remove this item?');
-    if (confirmDelete) {
-        const itemIndex = itemTable.findIndex(item => item.id === element.id);
-        // console.log(ToDoItem.id);
-        // console.log()
-        if (itemIndex !== -1) {
-            itemTable.splice(itemIndex, 1);
-        }
-    }
-}
-
-// Function: Adds the generic to do items to an array for an object of a project of generic to do items
-function addToDoItemstoProjectArray() {
-
 }
