@@ -18,9 +18,12 @@ export class ListView {
 
         const pageHeader = DOM.createElement('h1', undefined, 'page-header', 'To Do List');
         const addItemBtn = DOM.createElement('button', undefined, 'add-item-btn', 'Add an Item');
+
         content.appendChild(pageHeader);
         content.appendChild(addItemBtn);
-        content.appendChild(listDiv);
+        addItemBtn.addEventListener('click', () => {
+            this.showItemForm();
+        })
 
 
         const itemHeadersDiv = DOM.createElement('div', undefined, 'item-list-headers')
@@ -34,5 +37,10 @@ export class ListView {
 
         const completeCheckbox = DOM.createElement('h2', 'list-header', 'list-checkbox-column', 'Completed:');
         itemHeadersDiv.appendChild(completeCheckbox);
+    }
+
+    showItemForm() {
+        const itemDialog = DOM.selectElement('#item-dialog');
+        itemDialog.show();
     }
 }
