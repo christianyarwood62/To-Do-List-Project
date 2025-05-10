@@ -4,8 +4,9 @@ import * as DOM from "./DOM.js"
 export class ListView {
     constructor() {
         this.itemTableContent = document.querySelector('#item-table-content');
+        this.form = document.querySelector('#item-form');
         this.itemInput = document.querySelector('#item-title-input');
-        this.itemPriority = document.querySelector('#item-priority-input');
+        this.itemPriority = document.querySelector('#item-priority-input')
     }
 
     renderListTemplate() {

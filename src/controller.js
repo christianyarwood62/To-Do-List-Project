@@ -1,6 +1,7 @@
 // js file to handle all intermediate actions between the data and the view
 
 import { ToDoItem, itemArray } from "./data";
+import { selectElement } from "./DOM";
 import { ListView } from "./view";
 
 export class PageController {
@@ -8,15 +9,21 @@ export class PageController {
         this.view = new ListView;
         this.toDoList = new ToDoItem;
 
+        this.toDoList.getTodoItems(itemArray);
         this.view.renderListTemplate();
         this.view.renderTodos(itemArray);
 
-        this.performAddTodo();
-        console.log(itemArray);
+        const addItemToContentBtn = selectElement('#add-item-to-table-btn');
+        addItemToContentBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.performAddTodo();
+        })
     }
 
     performAddTodo() {
-        this.view.addItemToContent({itemTitle: 'second Title', itemPriority: 'Test priority', itemCompleted: false});
-        this.toDoList.addItemToArray({itemTitle: 'second Title', itemPriority: 'Test priority', itemCompleted: false});
+        const itemTitleInput = document.querySelector('#item-title-input').value;
+        const itemPriorityInput = document.querySelector('#item-priority-input').value;
+        this.toDoList.addItemToArray({checked: false, itemTitle: `${itemTitleInput}`, itemPriority: `${itemPriorityInput}`});
+        this.view.renderTodos(itemArray);
     }
 }
