@@ -24,12 +24,22 @@ body {
 
 .items-list-row {
     display: flex;
+    background-color: lightblue;
+    height: auto;;
 }
 
-.item-title-column {
-    width: 400px;
+#item-title-column {
+    width: 200px;
 }
 
-.item-date-column {
-    width: 300px
+#item-priority-column {
+    width: 200px;
+}
+
+#item-completed-column {
+    width: 200px;
+}
+
+#item-list-headers {
+    display: flex;
 }
