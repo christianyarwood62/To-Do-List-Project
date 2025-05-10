@@ -20,4 +20,5 @@ export function selectElement(element) {
 export function createItemDiv() {
     const itemDiv = document.createElement('div');
     itemDiv.id = 'item-div';
+    return itemDiv;
 }
