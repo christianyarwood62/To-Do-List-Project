@@ -4,13 +4,13 @@ import * as DOM from "./DOM.js"
 export class ListView {
     constructor() {
         this.itemTableContent = document.querySelector('#item-table-content');
-        console.log(this.itemTableContent);
+        this.itemInput = document.querySelector('#item-title-input');
+        this.itemPriority = document.querySelector('#item-priority-input');
     }
 
     renderListTemplate() {
         const content = DOM.selectElement('#content');
         const listDiv = DOM.createElement('div', undefined, 'list-div');
-
 
         const pageHeader = DOM.createElement('h1', undefined, 'page-header', 'To Do List');
         const addItemBtn = DOM.createElement('button', undefined, 'add-item-btn', 'Add an Item');
@@ -52,7 +52,7 @@ export class ListView {
             itemTableContent.appendChild(itemDiv);
     
             const itemTitleInTable = DOM.createElement('p', undefined, 'item-title-column', `${todoItem['itemTitle']}`);
-            const itemPriorityInTable = DOM.createElement('p', undefined, 'item-priority-column', `${todoItem['itemTitle']}`);
+            const itemPriorityInTable = DOM.createElement('p', undefined, 'item-priority-column', `${todoItem['itemPriority']}`);
             const itemCompletedInTable = DOM.createElement('button', undefined, undefined, 'complete');
             itemDiv.appendChild(itemTitleInTable);
             itemDiv.appendChild(itemPriorityInTable);
@@ -60,7 +60,7 @@ export class ListView {
         });
     }
 
-    addItemToContent() {
+    addItemToContent(item) {
         const addItemBtn = DOM.selectElement('#add-item-to-table-btn');
         addItemBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -69,13 +69,12 @@ export class ListView {
             content.appendChild(itemTableContent);
             itemTableContent.appendChild(itemDiv);
     
-            const itemTitleInTable = DOM.createElement('p', undefined, 'item-title-column', 'title test');
-            const itemPriorityInTable = DOM.createElement('p', undefined, 'item-priority-column', 'priority test');
+            const itemTitleInTable = DOM.createElement('p', undefined, 'item-title-column', `${this.itemInput.value}`);
+            const itemPriorityInTable = DOM.createElement('p', undefined, 'item-priority-column', `${this.itemPriority.value}`);
             const itemCompletedInTable = DOM.createElement('button', undefined, undefined, 'Complete');
             itemDiv.appendChild(itemTitleInTable);
             itemDiv.appendChild(itemPriorityInTable);
             itemDiv.appendChild(itemCompletedInTable);
         })
-
     }
 }

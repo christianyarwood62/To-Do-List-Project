@@ -1,9 +1,7 @@
 // js file to handle all intermediate actions between the data and the view
 
-import { ToDoItem } from "./data";
+import { ToDoItem, itemArray } from "./data";
 import { ListView } from "./view";
-
-const toDoArrayTest = [{itemTitle: 'test Title', itemPriority: 'Test priority', itemCompleted: false}];
 
 export class PageController {
     constructor() {
@@ -11,13 +9,14 @@ export class PageController {
         this.toDoList = new ToDoItem;
 
         this.view.renderListTemplate();
-        this.view.renderTodos(toDoArrayTest);
+        this.view.renderTodos(itemArray);
 
-        this.performAddTodo(toDoArrayTest);
+        this.performAddTodo();
+        console.log(itemArray);
     }
 
     performAddTodo() {
-        this.view.addItemToContent();
-        this.toDoList.addItemToArrayTest();
+        this.view.addItemToContent({itemTitle: 'second Title', itemPriority: 'Test priority', itemCompleted: false});
+        this.toDoList.addItemToArray({itemTitle: 'second Title', itemPriority: 'Test priority', itemCompleted: false});
     }
 }

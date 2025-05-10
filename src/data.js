@@ -2,33 +2,34 @@
 
 import { format } from "date-fns";
 
-export const itemArray = [];
+export const itemArray = [{itemTitle: 'test Title', itemPriority: 'Test priority', itemCompleted: false}];
 
 // Initialise an empty array for projects to populate
 export const  projectsArray = [];
 
 export class ToDoItem {
-    constructor(checked, title, dueDate) {
+    constructor(checked, title, dueDate, itemPriority) {
         let checkedInput = false;
         this.checked = checkedInput;
         this.title = title;
         this.dueDate = dueDate;
+        this.itemPriority = itemPriority;
         this.id = crypto.randomUUID();
+    }
+
+    getTodoItems(todoItems) {
+        return todoItems;
     }
 
     addItemToArray(item) {
         itemArray.push(item);
-        console.log('Successfully added an item to the Items Array');
-        console.log(itemArray);
+        // console.log('Successfully added an item to the Items Array');
+        // console.log(itemArray);
     }
 
     removeItemfromArray(item) {
         itemArray.splice(item, 1)
         console.log('Successfully removed an item to the Items Array');
-    }
-
-    addItemToArrayTest() {
-        console.log('data test')
     }
 }
 
