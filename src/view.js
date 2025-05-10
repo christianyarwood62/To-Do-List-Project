@@ -17,8 +17,7 @@ export class ListView {
 
         content.appendChild(pageHeader);
         content.appendChild(addItemBtn);
-        addItemBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+        addItemBtn.addEventListener('click', () => {
             this.showItemForm();
         })
 
@@ -62,16 +61,21 @@ export class ListView {
     }
 
     addItemToContent() {
-        const itemTableContent = DOM.createElement('div', undefined, 'item-table-content');
-        const itemDiv = DOM.createElement('div', 'items-list-row');
-        content.appendChild(itemTableContent);
-        itemTableContent.appendChild(itemDiv);
+        const addItemBtn = DOM.selectElement('#add-item-to-table-btn');
+        addItemBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const itemTableContent = DOM.createElement('div', undefined, 'item-table-content');
+            const itemDiv = DOM.createElement('div', 'items-list-row');
+            content.appendChild(itemTableContent);
+            itemTableContent.appendChild(itemDiv);
+    
+            const itemTitleInTable = DOM.createElement('p', undefined, 'item-title-column', 'title test');
+            const itemPriorityInTable = DOM.createElement('p', undefined, 'item-priority-column', 'priority test');
+            const itemCompletedInTable = DOM.createElement('button', undefined, undefined, 'Complete');
+            itemDiv.appendChild(itemTitleInTable);
+            itemDiv.appendChild(itemPriorityInTable);
+            itemDiv.appendChild(itemCompletedInTable);
+        })
 
-        const itemTitleInTable = DOM.createElement('p', undefined, 'item-title-column', 'title test');
-        const itemPriorityInTable = DOM.createElement('p', undefined, 'item-priority-column', 'priority test');
-        const itemCompletedInTable = DOM.createElement('p', undefined, 'item-completed-column', 'X');
-        itemDiv.appendChild(itemTitleInTable);
-        itemDiv.appendChild(itemPriorityInTable);
-        itemDiv.appendChild(itemCompletedInTable);
     }
 }

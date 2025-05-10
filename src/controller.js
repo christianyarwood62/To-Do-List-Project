@@ -11,12 +11,13 @@ export class PageController {
         this.toDoList = new ToDoItem;
 
         this.view.renderListTemplate();
-        // this.performAddTodo();
         this.view.renderTodos(toDoArrayTest);
+
+        this.performAddTodo(toDoArrayTest);
     }
 
     performAddTodo() {
-        this.view.renderTodos();
+        this.view.addItemToContent();
         this.toDoList.addItemToArrayTest();
     }
 }
