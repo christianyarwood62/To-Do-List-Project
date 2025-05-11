@@ -43,6 +43,8 @@ export class ListView {
         const sidebarHeader = DOM.createElement('h2', undefined, undefined, 'Projects');
         const addProjectBtn = DOM.createElement('button', undefined, 'add-project-btn', 'Add Project');
         const projectList = DOM.createElement('ul', 'project-list', 'project-list');
+        const closeSidebarBtn = DOM.createElement('button', 'close-sidebar-btn', undefined, 'X')
+        sidebar.appendChild(closeSidebarBtn);
         sidebar.appendChild(sidebarHeader);
         sidebar.appendChild(addProjectBtn);
         sidebar.appendChild(projectList);
@@ -52,10 +54,14 @@ export class ListView {
         const pageHeader = DOM.createElement('h1', undefined, 'page-header', 'To Do List');
         const addItemBtn = DOM.createElement('button', undefined, 'add-item-btn', 'Add an Item');
         const itemTableContent = DOM.createElement('div', undefined, 'item-table-content');
-    
-        const itemTableTitleHeader = DOM.createElement('h3', 'item-list-headers', undefined, 'To Do Item:')
-        const itemTablePrirityHeader = DOM.createElement('h3', 'item-list-headers', undefined, 'Priority:')
-
+        const sideBarNavigationBtn = DOM.createElement('button');
+        const hamburgerIconDiv1 = DOM.createElement('div', 'sidebar-navigation-btn');
+        const hamburgerIconDiv2 = DOM.createElement('div', 'sidebar-navigation-btn');
+        const hamburgerIconDiv3 = DOM.createElement('div', 'sidebar-navigation-btn');
+        sideBarNavigationBtn.appendChild(hamburgerIconDiv1);
+        sideBarNavigationBtn.appendChild(hamburgerIconDiv2);
+        sideBarNavigationBtn.appendChild(hamburgerIconDiv3);
+        main.appendChild(sideBarNavigationBtn);
         main.appendChild(pageHeader);
         main.appendChild(addItemBtn);
         main.appendChild(itemTableContent);

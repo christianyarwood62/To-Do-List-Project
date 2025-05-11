@@ -10,11 +10,11 @@
         <form id="project-form">
             <div class="project-form-container">
                 <label for="project-title-input">New Project: </label>
-                <input id = 'project-title-input' type="text">
+                <input id='project-title-input' type="text">
             </div>
             <div class="project-form-container">
                 <label for="project-duedate-input">Deadline: </label>
-                <input id = 'project-duedate-input' type="date">
+                <input id='project-duedate-input' type="date">
             </div>
             <button type='submit' id="add-project-to-table-btn">Add a Project</button>
         </form>
@@ -24,11 +24,16 @@
         <form id="item-form">
             <div class="item-form-container">
                 <label for="item-title-input">New To Do Item: </label>
-                <input id = 'item-title-input' type="text">
+                <input id='item-title-input' type="text">
             </div>
             <div class="item-form-container">
-                <label for = "item-priority-input">Priority: </label>
-                <input id = 'item-priority-input' type="text">
+                <label for="item-priority-input">Priority: </label>
+                <!-- <input id='item-priority-input' type="text"> -->
+                <select id="item-priority-input">
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select>
             </div>
             <button id="add-item-to-table-btn">Add a To Do Item</button>
         </form>

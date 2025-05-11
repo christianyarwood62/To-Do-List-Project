@@ -1,10 +1,11 @@
 body {
     display: flex;
     margin: 0px;
+    background-color: rgb(178, 234, 255);
 }
 
 #sidebar {
-    background-color: rgb(135, 135, 255);
+    background-color: rgb(108, 108, 243);
     box-sizing: border-box;
     padding: 10px;
     height: 100vh;
@@ -16,8 +17,23 @@ body {
     width: calc(100% - 300px);
 }
 
+#main {
+    padding: 10px
+}
+
 #layout {
     display: flex;;
+}
+
+.sidebar-navigation-btn {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}
+
+#sidebar li:hover {
+    color: #f1f1f1;
 }
 
 .items-list {
@@ -52,5 +68,4 @@ body {
 
 .completed {
     text-decoration: line-through;
-    /* opacity: 40%; */
 }
