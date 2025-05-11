@@ -13,8 +13,6 @@ export class PageController {
 
         this.view.showProjectForm = () => {
             this.handleAddProject();
-            this.view.renderProjectList(projectsArray);
-            this.view.renderTodos(newProject.toDoItems);
         };
         this.view.onSelectProject = (projectId) => this.handleSelectProject(projectId);
         this.view.onToggleStatus = (todoItem) => {
@@ -62,6 +60,9 @@ export class PageController {
             const newProject = new ToDoProject(name, due);
             projectsArray.push(newProject);
             this.currentProject = newProject;
+            
+            this.view.renderProjectList(projectsArray);
+            this.view.renderTodos(newProject.toDoItems);
             
             input.value = '';
             dueDate.value = '';

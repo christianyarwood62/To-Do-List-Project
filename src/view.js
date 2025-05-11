@@ -73,7 +73,7 @@ export class ListView {
         closeSidebarBtn.onclick = DOM.closeSidebar;
 
         addItemBtn.addEventListener('click', () => this.showItemForm());
-        addProjectBtn.addEventListener('click', () => this.handleAddProject());
+        addProjectBtn.addEventListener('click', () => this.showProjectForm());
     }
 
     renderProjectList(projectArray) {
@@ -95,6 +95,11 @@ export class ListView {
     showItemForm() {
         const itemDialog = DOM.selectElement('#item-dialog');
         itemDialog.show();
+    }
+
+    showProjectForm() {
+        const projectForm = DOM.selectElement('#project-form');
+        projectForm.show();
     }
 
     renderTodos(todoArray) {
