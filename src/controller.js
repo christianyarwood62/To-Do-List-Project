@@ -11,7 +11,11 @@ export class PageController {
         this.view.renderListTemplate();
         this.view.renderProjectList(projectsArray);
 
-        this.view.showProjectForm = () => this.handleAddProject();
+        this.view.showProjectForm = () => {
+            this.handleAddProject();
+            this.view.renderProjectList(projectsArray);
+            this.view.renderTodos(newProject.toDoItems);
+        };
         this.view.onSelectProject = (projectId) => this.handleSelectProject(projectId);
         this.view.onToggleStatus = (todoItem) => {
             todoItem.checked = !todoItem.checked;
@@ -38,5 +42,30 @@ export class PageController {
             this.currentProject = selectedProject;
             this.view.renderTodos(selectedProject.toDoItems);
         }
+    }
+
+    handleAddProject() {
+        const dialog = document.querySelector('#project-dialog');
+        const input = document.querySelector('#project-title-input');
+        const dueDate = document.querySelector('#project-duedate-input');
+        const form = document.querySelector('#project-form');
+        
+        dialog.showModal();
+        
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            const name = input.value.trim();
+            const due = dueDate.value;
+
+            if (!name) return;
+        
+            const newProject = new ToDoProject(name, due);
+            projectsArray.push(newProject);
+            this.currentProject = newProject;
+            
+            input.value = '';
+            dueDate.value = '';
+            dialog.close();
+        };
     }
 }
