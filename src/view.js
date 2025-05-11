@@ -1,6 +1,6 @@
 import { add } from "date-fns";
 import * as DOM from "./DOM.js"
-import { ToDoList } from "./data.js";
+import { ToDoProject, projectsArray } from "./data.js";
 
 export class ListView {
     constructor() {
@@ -74,7 +74,7 @@ export class ListView {
         closeSidebarBtn.onclick = DOM.closeSidebar;
 
         addItemBtn.addEventListener('click', () => this.showItemForm());
-        addProjectBtn.addEventListener('click', () => this.onAddProject());
+        addProjectBtn.addEventListener('click', () => this.handleAddProject());
     }
 
     renderProjectList(projectArray) {
@@ -96,6 +96,34 @@ export class ListView {
     showItemForm() {
         const itemDialog = DOM.selectElement('#item-dialog');
         itemDialog.show();
+    }
+
+    handleAddProject() {
+        const dialog = document.querySelector('#project-dialog');
+        const input = document.querySelector('#project-title-input');
+        const dueDate = document.querySelector('#project-duedate-input');
+        const form = document.querySelector('#project-form');
+        
+        dialog.showModal();
+        
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            const name = input.value.trim();
+            const due = dueDate.value;
+
+            if (!name) return;
+        
+            const newProject = new ToDoProject(name, due);
+            projectsArray.push(newProject);
+            this.currentProject = newProject;
+        
+            this.renderProjectList(projectsArray);
+            this.renderTodos(newProject.toDoItems);
+        
+            input.value = '';
+            dueDate.value = '';
+            dialog.close();
+        };
     }
 
     renderTodos(todoArray) {
@@ -135,13 +163,5 @@ export class ListView {
                 this.onToggleStatus(todoItem);
             })
         });
-    }
-
-    handleAddItem(title, priority) {
-        if (!this.currentProject) return;
-    
-        const newItem = new ToDoList(title, priority);
-        this.currentProject.toDoItems.push(newItem);
-        this.view.renderTodos(this.currentProject.toDoItems);
     }
 }

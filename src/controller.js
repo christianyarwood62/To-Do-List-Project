@@ -1,6 +1,6 @@
 // js file to handle all intermediate actions between the data and the view
 
-import { ToDoList, ToDoProject, projectsArray, itemArray } from "./data";
+import { ToDoItem, ToDoProject, projectsArray } from "./data";
 import { ListView } from "./view";
 
 export class PageController {
@@ -11,7 +11,7 @@ export class PageController {
         this.view.renderListTemplate();
         this.view.renderProjectList(projectsArray);
 
-        this.view.onAddProject = () => this.handleAddProject();
+        this.view.showProjectForm = () => this.handleAddProject();
         this.view.onSelectProject = (projectId) => this.handleSelectProject(projectId);
         this.view.onToggleStatus = (todoItem) => {
             todoItem.checked = !todoItem.checked;
@@ -25,39 +25,10 @@ export class PageController {
 
         this.view.onSubmitItem = (title, priority) => {
             if (this.currentProject) {
-                const newItem = new ToDoList(title, priority);
+                const newItem = new ToDoItem(title, priority);
                 this.currentProject.toDoItems.push(newItem);
                 this.view.renderTodos(this.currentProject.toDoItems);
             }
-        };
-    }
-
-    handleAddProject() {
-        const dialog = document.querySelector('#project-dialog');
-        const input = document.querySelector('#project-title-input');
-        const dueDate = document.querySelector('#project-duedate-input');
-        const form = document.querySelector('#project-form');
-      
-        dialog.showModal();
-      
-        form.onsubmit = (e) => {
-            e.preventDefault();
-            const name = input.value.trim();
-            const due = dueDate.value;
-
-            if (!name) return;
-      
-            const newProject = new ToDoProject(name);
-            newProject.dueDate = due;
-            projectsArray.push(newProject);
-            this.currentProject = newProject;
-      
-            this.view.renderProjectList(projectsArray);
-            this.view.renderTodos(newProject.toDoItems);
-      
-            input.value = '';
-            dueDate.value = '';
-            dialog.close();
         };
     }
 
