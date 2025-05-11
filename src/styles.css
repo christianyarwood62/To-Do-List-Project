@@ -9,7 +9,16 @@ body {
     box-sizing: border-box;
     padding: 10px;
     height: 100vh;
-    width: 300px;
+    width: 250px;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+#sidebar.closed {
+    width: 0px;
+    opacity: 0;
+    visibility: hidden;
+    padding: 0px;
 }
 
 #content {
@@ -25,7 +34,7 @@ body {
     display: flex;;
 }
 
-.sidebar-navigation-btn {
+.sidebar-navigation-hamburger {
     width: 35px;
     height: 5px;
     background-color: black;
@@ -44,7 +53,7 @@ body {
 
 .items-list-row {
     display: flex;
-    background-color: lightblue;
+    background-color: rgb(182, 190, 193);
     height: auto;
     margin: 5px;
     border-radius: 10px;
@@ -68,4 +77,8 @@ body {
 
 .completed {
     text-decoration: line-through;
+}
+
+li {
+    margin-bottom: 10px;
 }

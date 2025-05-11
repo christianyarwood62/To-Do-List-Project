@@ -22,3 +22,19 @@ export function createItemDiv() {
     itemDiv.id = 'item-div';
     return itemDiv;
 }
+
+export function openSidebar() {
+    const sidebar = document.querySelector('#sidebar');
+    sidebar.classList.remove('closed');
+    requestAnimationFrame(() => {
+        sidebar.style.width = '250px';
+    });
+}
+
+export function closeSidebar() {
+    const sidebar = document.querySelector('#sidebar');
+    sidebar.style.width = '0px';
+    setTimeout(() => {
+        sidebar.classList.add('closed');
+    }, 300);
+}

@@ -54,10 +54,10 @@ export class ListView {
         const pageHeader = DOM.createElement('h1', undefined, 'page-header', 'To Do List');
         const addItemBtn = DOM.createElement('button', undefined, 'add-item-btn', 'Add an Item');
         const itemTableContent = DOM.createElement('div', undefined, 'item-table-content');
-        const sideBarNavigationBtn = DOM.createElement('button');
-        const hamburgerIconDiv1 = DOM.createElement('div', 'sidebar-navigation-btn');
-        const hamburgerIconDiv2 = DOM.createElement('div', 'sidebar-navigation-btn');
-        const hamburgerIconDiv3 = DOM.createElement('div', 'sidebar-navigation-btn');
+        const sideBarNavigationBtn = DOM.createElement('button', 'sidebar-navigation-btn');
+        const hamburgerIconDiv1 = DOM.createElement('div', 'sidebar-navigation-hamburger');
+        const hamburgerIconDiv2 = DOM.createElement('div', 'sidebar-navigation-hamburger');
+        const hamburgerIconDiv3 = DOM.createElement('div', 'sidebar-navigation-hamburger');
         sideBarNavigationBtn.appendChild(hamburgerIconDiv1);
         sideBarNavigationBtn.appendChild(hamburgerIconDiv2);
         sideBarNavigationBtn.appendChild(hamburgerIconDiv3);
@@ -65,9 +65,12 @@ export class ListView {
         main.appendChild(pageHeader);
         main.appendChild(addItemBtn);
         main.appendChild(itemTableContent);
+
     
         layout.appendChild(sidebar);
         layout.appendChild(main);
+        sideBarNavigationBtn.onclick = DOM.openSidebar;
+        closeSidebarBtn.onclick = DOM.closeSidebar;
 
         addItemBtn.addEventListener('click', () => this.showItemForm());
         addProjectBtn.addEventListener('click', () => this.onAddProject());
