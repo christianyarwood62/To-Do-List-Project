@@ -43,3 +43,8 @@ body {
 #item-list-headers {
     display: flex;
 }
+
+.completed {
+    text-decoration: line-through;
+    /* opacity: 40%; */
+}

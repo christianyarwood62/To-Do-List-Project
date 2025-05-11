@@ -4,4 +4,3 @@ import { PageController } from "./controller.js";
 document.addEventListener('DOMContentLoaded', () => {
     const newController = new PageController();
 })
-

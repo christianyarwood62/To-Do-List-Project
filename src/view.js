@@ -1,12 +1,18 @@
 import { add } from "date-fns";
 import * as DOM from "./DOM.js"
+import { itemArray } from "./data.js";
 
 export class ListView {
     constructor() {
+        if (!new.target) {
+            throw Error("You must use the 'new' keyword!");
+        }
         this.itemTableContent = document.querySelector('#item-table-content');
         this.form = document.querySelector('#item-form');
         this.itemInput = document.querySelector('#item-title-input');
-        this.itemPriority = document.querySelector('#item-priority-input')
+        this.itemPriority = document.querySelector('#item-priority-input');
+        this.itemTitleInList = document.querySelector('.item-title-in-table');
+        this.itemRow = document.querySelector('.items-list-row');
     }
 
     renderListTemplate() {
@@ -52,30 +58,23 @@ export class ListView {
             const itemDiv = DOM.createElement('div', 'items-list-row');
             itemTableContent.appendChild(itemDiv);
     
-            const itemTitleInTable = DOM.createElement('p', undefined, 'item-title-column', `${todoItem['itemTitle']}`);
-            const itemPriorityInTable = DOM.createElement('p', undefined, 'item-priority-column', `${todoItem['itemPriority']}`);
-            const itemCompletedInTable = DOM.createElement('button', undefined, undefined, 'complete');
-            itemDiv.appendChild(itemTitleInTable);
-            itemDiv.appendChild(itemPriorityInTable);
-            itemDiv.appendChild(itemCompletedInTable);
-        });
-    }
+            const itemTitleInTable = DOM.createElement('p', 'item-title-in-table', 'item-title-column', `${todoItem['itemTitle']}`);
+            const itemPriorityInTable = DOM.createElement('p', 'item-priority-in-table', 'item-priority-column', `${todoItem['itemPriority']}`);
+            const itemCompletedInTable = DOM.createElement('button', 'item-complete-btn-in-table', 'item-completed-column', 'Incomplete');
+            if (todoItem['checked'] === true) {
+                itemTitleInTable.classList.add('completed');
+                itemPriorityInTable.classList.add('completed');
+                itemCompletedInTable.textContent = 'Completed!';
+                itemDiv.style.opacity = '40%';
+            }
 
-    addItemToContent(item) {
-        const addItemBtn = DOM.selectElement('#add-item-to-table-btn');
-        addItemBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const itemTableContent = DOM.createElement('div', undefined, 'item-table-content');
-            const itemDiv = DOM.createElement('div', 'items-list-row');
-            content.appendChild(itemTableContent);
-            itemTableContent.appendChild(itemDiv);
-    
-            const itemTitleInTable = DOM.createElement('p', undefined, 'item-title-column', `${this.itemInput.value}`);
-            const itemPriorityInTable = DOM.createElement('p', undefined, 'item-priority-column', `${this.itemPriority.value}`);
-            const itemCompletedInTable = DOM.createElement('button', undefined, undefined, 'Complete');
             itemDiv.appendChild(itemTitleInTable);
             itemDiv.appendChild(itemPriorityInTable);
             itemDiv.appendChild(itemCompletedInTable);
-        })
+
+            itemCompletedInTable.addEventListener('click', () => {
+                this.onToggleStatus(todoItem);
+            })
+        });
     }
 }
