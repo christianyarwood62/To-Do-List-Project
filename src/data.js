@@ -2,8 +2,6 @@
 
 import { format } from "date-fns";
 
-export const itemArray = [];
-
 // Initialise an empty array for projects to populate
 export const  projectsArray = [];
 
@@ -14,6 +12,7 @@ export class ToDoList {
         }
         this.itemTitle = itemTitle;
         this.itemPriority = itemPriority;
+        this.checked = false;
         this.id = crypto.randomUUID();
     }
 
@@ -38,24 +37,9 @@ export class ToDoList {
 }
 
 export class ToDoProject {
-    constructor(projectTitle, toDoItems, dueDate) {
+    constructor(projectTitle) {
         this.projectTitle = projectTitle;
         this.toDoItems = [];
-        this.dueDate = dueDate;
-    }
-
-    addItemToProjectList(item) {
-        this.toDoItems.push([item]);
-        console.log('Successfully added a item to the project')
-    }
-
-    displayProject() {
-        const test = document.createElement('p');
-        test.textContent = this.projectTitle;
-    }
-
-    addProjectToProjectArray() {
-        projectsArray.push({projectTitle: this.projectTitle, toDoItems: this.toDoItems, dueDate: this.dueDate});
-        console.log('successfully added a project to the project array');
+        this.id = crypto.randomUUID();
     }
 }

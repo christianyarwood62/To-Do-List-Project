@@ -1,40 +1,72 @@
 // js file to handle all intermediate actions between the data and the view
 
-import { ToDoList, itemArray } from "./data";
-import { selectElement } from "./DOM";
+import { ToDoList, ToDoProject, projectsArray, itemArray } from "./data";
 import { ListView } from "./view";
 
 export class PageController {
     constructor() {
-        if (!new.target) {
-            throw Error("You must use the 'new' keyword!");
-        }
-        this.view = new ListView;
-        this.toDoList = new ToDoList;
+        this.view = new ListView();
+        this.currentProject = null;
 
         this.view.renderListTemplate();
-        this.view.renderTodos(itemArray);
+        this.view.renderProjectList(projectsArray);
 
+        this.view.onAddProject = () => this.handleAddProject();
+        this.view.onSelectProject = (projectId) => this.handleSelectProject(projectId);
         this.view.onToggleStatus = (todoItem) => {
-            this.toDoList.toggleItemCompletedStatus(todoItem);
-            this.view.renderTodos(itemArray);
+            todoItem.checked = !todoItem.checked;
+            this.view.renderTodos(this.currentProject.toDoItems);
         };
 
-        const addItemToContentBtn = selectElement('#add-item-to-table-btn');
-        addItemToContentBtn.addEventListener('click', (e) => {
+        const defaultProject = new ToDoProject("Generic List");
+        defaultProject.toDoItems.push(new ToDoList("Sample Todo", "High"));
+        projectsArray.push(defaultProject);
+        this.currentProject = defaultProject;
+        this.view.renderTodos(defaultProject.toDoItems);
+
+        this.view.onSubmitItem = (title, priority) => {
+            if (this.currentProject) {
+                const newItem = new ToDoList(title, priority);
+                this.currentProject.toDoItems.push(newItem);
+                this.view.renderTodos(this.currentProject.toDoItems);
+            }
+        };
+    }
+
+    handleAddProject() {
+        const dialog = document.querySelector('#project-dialog');
+        const input = document.querySelector('#project-title-input');
+        const dueDate = document.querySelector('#project-duedate-input');
+        const form = document.querySelector('#project-form');
+      
+        dialog.showModal();
+      
+        form.onsubmit = (e) => {
             e.preventDefault();
-            this.performAddTodo();
-        })
+            const name = input.value.trim();
+            const due = dueDate.value;
+
+            if (!name) return;
+      
+            const newProject = new ToDoProject(name);
+            newProject.dueDate = due;
+            projectsArray.push(newProject);
+            this.currentProject = newProject;
+      
+            this.view.renderProjectList(projectsArray);
+            this.view.renderTodos(newProject.toDoItems);
+      
+            input.value = '';
+            dueDate.value = '';
+            dialog.close();
+        };
     }
 
-    performAddTodo() {
-        const itemTitleInput = document.querySelector('#item-title-input').value;
-        const itemPriorityInput = document.querySelector('#item-priority-input').value;
-        this.toDoList.addItemToArray({checked: false, itemTitle: `${itemTitleInput}`, itemPriority: `${itemPriorityInput}`});
-        this.view.renderTodos(itemArray);
+    handleSelectProject(projectId) {
+        const selectedProject = projectsArray.find(p => p.id === projectId);
+        if (selectedProject) {
+            this.currentProject = selectedProject;
+            this.view.renderTodos(selectedProject.toDoItems);
+        }
     }
-
-    // performToggleCompletedStatus(item) {
-    //     toggleCompletedStatus(item)
-    // }
 }

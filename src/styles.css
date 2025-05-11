@@ -16,6 +16,10 @@ body {
     width: calc(100% - 300px);
 }
 
+#layout {
+    display: flex;;
+}
+
 .items-list {
     height: 200px;
     width: 100%;
@@ -25,7 +29,9 @@ body {
 .items-list-row {
     display: flex;
     background-color: lightblue;
-    height: auto;;
+    height: auto;
+    margin: 5px;
+    border-radius: 10px;
 }
 
 #item-title-column {

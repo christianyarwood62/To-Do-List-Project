@@ -1,6 +1,6 @@
 import { add } from "date-fns";
 import * as DOM from "./DOM.js"
-import { itemArray } from "./data.js";
+import { ToDoList } from "./data.js";
 
 export class ListView {
     constructor() {
@@ -13,37 +13,70 @@ export class ListView {
         this.itemPriority = document.querySelector('#item-priority-input');
         this.itemTitleInList = document.querySelector('.item-title-in-table');
         this.itemRow = document.querySelector('.items-list-row');
+
+        this.form.onsubmit = (e) => {
+            e.preventDefault();
+            const title = this.itemInput.value.trim();
+            const priority = this.itemPriority.value.trim();
+            if (!title || !priority) {
+                window.alert('Please fill in all the fields');
+                return;
+            };
+        
+            this.onSubmitItem(title, priority);
+        
+            this.itemInput.value = '';
+            this.itemPriority.value = '';
+            document.querySelector('#item-dialog').close();
+        };
     }
 
     renderListTemplate() {
         const content = DOM.selectElement('#content');
-        const listDiv = DOM.createElement('div', undefined, 'list-div');
-
+        content.innerHTML = '';
+    
+        const layout = DOM.createElement('div', undefined, 'layout');
+        content.appendChild(layout);
+    
+        // Creating elements in the sidebar
+        const sidebar = DOM.createElement('div', undefined, 'sidebar');
+        const sidebarHeader = DOM.createElement('h2', undefined, undefined, 'Projects');
+        const addProjectBtn = DOM.createElement('button', undefined, 'add-project-btn', 'Add Project');
+        const projectList = DOM.createElement('ul', 'project-list', 'project-list');
+        sidebar.appendChild(sidebarHeader);
+        sidebar.appendChild(addProjectBtn);
+        sidebar.appendChild(projectList);
+    
+        // Creating elements in the main area of the page
+        const main = DOM.createElement('div', undefined, 'main');
         const pageHeader = DOM.createElement('h1', undefined, 'page-header', 'To Do List');
         const addItemBtn = DOM.createElement('button', undefined, 'add-item-btn', 'Add an Item');
-
-        content.appendChild(pageHeader);
-        content.appendChild(addItemBtn);
-        addItemBtn.addEventListener('click', () => {
-            this.showItemForm();
-        })
-
-        content.appendChild(listDiv);
-
-        const itemHeadersDiv = DOM.createElement('div', undefined, 'item-list-headers')
-        listDiv.appendChild(itemHeadersDiv);
-
-        const itemNameHeader = DOM.createElement('h2', 'list-header', 'item-title-column', 'To Do Item:');
-        itemHeadersDiv.appendChild(itemNameHeader);
-
-        const itemPriorityHeader = DOM.createElement('h2', 'list-header', 'item-priority-column', 'Priority:');
-        itemHeadersDiv.appendChild(itemPriorityHeader);
-
-        const completeCheckbox = DOM.createElement('h2', 'list-header', 'item-completed-column', 'Completed:');
-        itemHeadersDiv.appendChild(completeCheckbox);
-
         const itemTableContent = DOM.createElement('div', undefined, 'item-table-content');
-        content.appendChild(itemTableContent);
+    
+        const itemTableTitleHeader = DOM.createElement('h3', 'item-list-headers', undefined, 'To Do Item:')
+        const itemTablePrirityHeader = DOM.createElement('h3', 'item-list-headers', undefined, 'Priority:')
+
+        main.appendChild(pageHeader);
+        main.appendChild(addItemBtn);
+        main.appendChild(itemTableContent);
+    
+        layout.appendChild(sidebar);
+        layout.appendChild(main);
+
+        addItemBtn.addEventListener('click', () => this.showItemForm());
+        addProjectBtn.addEventListener('click', () => this.onAddProject());
+    }
+
+    renderProjectList(projectArray) {
+        const projectList = DOM.selectElement('#project-list');
+        projectList.innerHTML = '';
+        projectArray.forEach(project => {
+            const projectItem = DOM.createElement('li', 'project-list-item', undefined, project.projectTitle);
+            projectItem.addEventListener('click', () => {
+                this.onSelectProject(project.id);
+            });
+            projectList.appendChild(projectItem);
+        });
     }
 
     showItemForm() {
@@ -54,6 +87,18 @@ export class ListView {
     renderTodos(todoArray) {
         const itemTableContent = DOM.selectElement('#item-table-content');
         itemTableContent.innerHTML = '';
+
+        const headerRow = DOM.createElement('div', undefined, 'item-list-headers');
+        const titleHeader = DOM.createElement('p', 'header-title', 'item-title-column', 'Title');
+        const priorityHeader = DOM.createElement('p', 'header-priority', 'item-priority-column', 'Priority');
+        const statusHeader = DOM.createElement('p', 'header-status', 'item-completed-column', 'Status');
+    
+        headerRow.appendChild(titleHeader);
+        headerRow.appendChild(priorityHeader);
+        headerRow.appendChild(statusHeader);
+    
+        itemTableContent.appendChild(headerRow);
+
         todoArray.forEach(todoItem => {
             const itemDiv = DOM.createElement('div', 'items-list-row');
             itemTableContent.appendChild(itemDiv);
@@ -76,5 +121,13 @@ export class ListView {
                 this.onToggleStatus(todoItem);
             })
         });
+    }
+
+    handleAddItem(title, priority) {
+        if (!this.currentProject) return;
+    
+        const newItem = new ToDoList(title, priority);
+        this.currentProject.toDoItems.push(newItem);
+        this.view.renderTodos(this.currentProject.toDoItems);
     }
 }
