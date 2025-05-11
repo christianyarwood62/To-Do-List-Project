@@ -13,6 +13,7 @@ export class ListView {
         this.itemPriority = document.querySelector('#item-priority-input');
         this.itemTitleInList = document.querySelector('.item-title-in-table');
         this.itemRow = document.querySelector('.items-list-row');
+        this.projectTitleElement = null;
 
         this.form.onsubmit = (e) => {
             e.preventDefault();
@@ -51,7 +52,6 @@ export class ListView {
     
         // Creating elements in the main area of the page
         const main = DOM.createElement('div', undefined, 'main');
-        const pageHeader = DOM.createElement('h1', undefined, 'page-header', 'To Do List');
         const addItemBtn = DOM.createElement('button', undefined, 'add-item-btn', 'Add an Item');
         const itemTableContent = DOM.createElement('div', undefined, 'item-table-content');
         const sideBarNavigationBtn = DOM.createElement('button', 'sidebar-navigation-btn');
@@ -62,10 +62,11 @@ export class ListView {
         sideBarNavigationBtn.appendChild(hamburgerIconDiv2);
         sideBarNavigationBtn.appendChild(hamburgerIconDiv3);
         main.appendChild(sideBarNavigationBtn);
-        main.appendChild(pageHeader);
         main.appendChild(addItemBtn);
         main.appendChild(itemTableContent);
 
+        this.projectTitleElement = DOM.createElement('h2', undefined, 'current-project-title', '');
+        sideBarNavigationBtn.after(this.projectTitleElement);
     
         layout.appendChild(sidebar);
         layout.appendChild(main);
@@ -79,10 +80,14 @@ export class ListView {
     renderProjectList(projectArray) {
         const projectList = DOM.selectElement('#project-list');
         projectList.innerHTML = '';
+
         projectArray.forEach(project => {
             const projectItem = DOM.createElement('li', 'project-list-item', undefined, project.projectTitle);
             projectItem.addEventListener('click', () => {
                 this.onSelectProject(project.id);
+                if (this.projectTitleElement) {
+                    this.projectTitleElement.textContent = project.projectTitle;
+                }
             });
             projectList.appendChild(projectItem);
         });

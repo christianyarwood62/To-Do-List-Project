@@ -19,7 +19,6 @@ export class PageController {
         };
 
         const defaultProject = new ToDoProject("Generic List");
-        defaultProject.toDoItems.push(new ToDoList("Sample Todo", "High"));
         projectsArray.push(defaultProject);
         this.currentProject = defaultProject;
         this.view.renderTodos(defaultProject.toDoItems);
