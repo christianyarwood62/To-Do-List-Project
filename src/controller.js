@@ -17,7 +17,8 @@ export class PageController {
             this.handleAddProject();
         };
 
-        const defaultProject = new ToDoProject("Generic List");
+        const defaultProject = new ToDoProject("Generic List", '');
+
         projectsArray.push(defaultProject);
         this.currentProject = defaultProject;
         this.view.renderTodos(defaultProject.toDoItems);
@@ -74,7 +75,7 @@ export class PageController {
             this.currentProject = newProject;
             
             this.view.renderProjectList(projectsArray);
-            this.view.addProjectTitleToContent(name);
+            this.view.addProjectTitleToContent(name, due);
             this.view.renderTodos(newProject.toDoItems);
 
             console.log(input.value);

@@ -65,7 +65,7 @@ export class ListView {
         main.appendChild(addItemBtn);
         main.appendChild(itemTableContent);
 
-        this.projectTitleElement = DOM.createElement('h2', undefined, 'current-project-title', '');
+        this.projectTitleElement = DOM.createElement('h2', undefined, 'current-project-title', 'Generic List');
         sideBarNavigationBtn.after(this.projectTitleElement);
     
         layout.appendChild(sidebar);
@@ -77,10 +77,14 @@ export class ListView {
         addProjectBtn.addEventListener('click', () => this.showProjectForm());
     }
 
-    addProjectTitleToContent(projectTitle) {
+    addProjectTitleToContent(projectTitle, due) {
         const sidebarNavigationBtn = document.querySelector('.sidebar-navigation-btn');
-        this.projectTitleElement = DOM.createElement('h2', undefined, 'current-project-title', projectTitle);
-        sidebarNavigationBtn.after(this.projectTitleElement);
+        const currentProjectTitle = document.querySelector('#current-project-title');
+        currentProjectTitle.innerHTML = '';
+        this.projectTitleElement = DOM.createElement('h2', undefined, 'current-project-title', `Current Project: ${projectTitle}`);
+        this.projectDueDate = DOM.createElement('h2', undefined, 'current-project-title', `Deadline: ${due}`)
+        currentProjectTitle.appendChild(this.projectTitleElement);
+        currentProjectTitle.appendChild(this.projectDueDate);
     }
 
     renderProjectList(projectArray) {
@@ -88,11 +92,14 @@ export class ListView {
         projectList.innerHTML = '';
 
         projectArray.forEach(project => {
+
             const projectItem = DOM.createElement('li', 'project-list-item', undefined, project.projectTitle);
             projectItem.addEventListener('click', () => {
+                console.log(projectArray);
                 this.onSelectProject(project.id);
                 if (this.projectTitleElement) {
-                    this.projectTitleElement.textContent = project.projectTitle;
+                    this.projectTitleElement.textContent = `Current Project: ${project.projectTitle}`;
+                    this.projectDueDate.textContent = `Deadline: ${project.dueDate}`;
                 }
             });
             projectList.appendChild(projectItem);
