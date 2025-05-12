@@ -74,8 +74,10 @@ export class PageController {
             this.currentProject = newProject;
             
             this.view.renderProjectList(projectsArray);
+            this.view.addProjectTitleToContent(name);
             this.view.renderTodos(newProject.toDoItems);
 
+            console.log(input.value);
             input.value = '';
             dueDate.value = '';
             dialog.close();

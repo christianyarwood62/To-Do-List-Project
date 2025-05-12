@@ -77,6 +77,12 @@ export class ListView {
         addProjectBtn.addEventListener('click', () => this.showProjectForm());
     }
 
+    addProjectTitleToContent(projectTitle) {
+        const sidebarNavigationBtn = document.querySelector('.sidebar-navigation-btn');
+        this.projectTitleElement = DOM.createElement('h2', undefined, 'current-project-title', projectTitle);
+        sidebarNavigationBtn.after(this.projectTitleElement);
+    }
+
     renderProjectList(projectArray) {
         const projectList = DOM.selectElement('#project-list');
         projectList.innerHTML = '';
@@ -108,9 +114,9 @@ export class ListView {
         itemTableContent.innerHTML = '';
 
         const headerRow = DOM.createElement('div', undefined, 'item-list-headers');
-        const titleHeader = DOM.createElement('p', 'header-title', 'item-title-column', 'Title');
-        const priorityHeader = DOM.createElement('p', 'header-priority', 'item-priority-column', 'Priority');
-        const statusHeader = DOM.createElement('p', 'header-status', 'item-completed-column', 'Status');
+        const titleHeader = DOM.createElement('p', 'header-title', 'item-column', 'Title');
+        const priorityHeader = DOM.createElement('p', 'header-priority', 'item-column', 'Priority');
+        const statusHeader = DOM.createElement('p', 'header-status', 'item-column', 'Status');
     
         headerRow.appendChild(titleHeader);
         headerRow.appendChild(priorityHeader);
@@ -122,10 +128,10 @@ export class ListView {
             const itemDiv = DOM.createElement('div', 'items-list-row');
             itemTableContent.appendChild(itemDiv);
     
-            const itemTitleInTable = DOM.createElement('p', 'item-title-in-table', 'item-title-column', `${todoItem['itemTitle']}`);
-            const itemPriorityInTable = DOM.createElement('p', 'item-priority-in-table', 'item-priority-column', `${todoItem['itemPriority']}`);
-            const itemCompletedInTable = DOM.createElement('button', 'item-complete-btn-in-table', 'item-completed-column', 'Incomplete');
-            const itemRemoveFromTableBtn = DOM.createElement('p', 'item-remove-btn-from-table', 'item-remove-column', 'X');
+            const itemTitleInTable = DOM.createElement('p', 'item-title-in-table', 'item-column', `${todoItem['itemTitle']}`);
+            const itemPriorityInTable = DOM.createElement('p', 'item-priority-in-table', 'item-column', `${todoItem['itemPriority']}`);
+            const itemCompletedInTable = DOM.createElement('button', 'item-complete-btn-in-table', 'item-column', 'Incomplete');
+            const itemRemoveFromTableBtn = DOM.createElement('p', 'item-remove-btn-from-table', 'item-column', 'X');
             if (todoItem['checked'] === true) {
                 itemTitleInTable.classList.add('completed');
                 itemPriorityInTable.classList.add('completed');

@@ -58,20 +58,24 @@ body {
     border-radius: 10px;
 }
 
-#item-title-column {
+#item-column {
     width: 200px;
 }
 
-#item-priority-column {
+#item-column {
     width: 200px;
 }
 
-#item-completed-column {
+#item-column {
     width: 200px;
 }
 
 #item-list-headers {
     display: flex;
+}
+
+.item-remove-btn-from-table {
+    text-align: center;
 }
 
 .completed {
