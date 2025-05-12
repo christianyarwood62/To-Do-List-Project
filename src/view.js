@@ -1,5 +1,6 @@
 import { add } from "date-fns";
 import * as DOM from "./DOM.js"
+import { projectsArray } from "./data.js";
 
 export class ListView {
     constructor() {
@@ -124,6 +125,7 @@ export class ListView {
             const itemTitleInTable = DOM.createElement('p', 'item-title-in-table', 'item-title-column', `${todoItem['itemTitle']}`);
             const itemPriorityInTable = DOM.createElement('p', 'item-priority-in-table', 'item-priority-column', `${todoItem['itemPriority']}`);
             const itemCompletedInTable = DOM.createElement('button', 'item-complete-btn-in-table', 'item-completed-column', 'Incomplete');
+            const itemRemoveFromTableBtn = DOM.createElement('p', 'item-remove-btn-from-table', 'item-remove-column', 'X');
             if (todoItem['checked'] === true) {
                 itemTitleInTable.classList.add('completed');
                 itemPriorityInTable.classList.add('completed');
@@ -134,6 +136,11 @@ export class ListView {
             itemDiv.appendChild(itemTitleInTable);
             itemDiv.appendChild(itemPriorityInTable);
             itemDiv.appendChild(itemCompletedInTable);
+            itemDiv.appendChild(itemRemoveFromTableBtn);
+
+            itemRemoveFromTableBtn.addEventListener('click', () => {
+                this.removeTodoItem(todoItem);
+            })
 
             itemCompletedInTable.addEventListener('click', () => {
                 this.onToggleStatus(todoItem);

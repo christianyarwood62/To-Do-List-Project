@@ -6,6 +6,8 @@ import { ListView } from "./view";
 export class PageController {
     constructor() {
         this.view = new ListView();
+        this.data = new ToDoItem();
+
         this.currentProject = null;
 
         this.view.renderListTemplate();
@@ -14,16 +16,26 @@ export class PageController {
         this.view.showProjectForm = () => {
             this.handleAddProject();
         };
+
+        const defaultProject = new ToDoProject("Generic List");
+        projectsArray.push(defaultProject);
+        this.currentProject = defaultProject;
+        this.view.renderTodos(defaultProject.toDoItems);
+        
         this.view.onSelectProject = (projectId) => this.handleSelectProject(projectId);
         this.view.onToggleStatus = (todoItem) => {
             todoItem.checked = !todoItem.checked;
             this.view.renderTodos(this.currentProject.toDoItems);
         };
 
-        const defaultProject = new ToDoProject("Generic List");
-        projectsArray.push(defaultProject);
-        this.currentProject = defaultProject;
-        this.view.renderTodos(defaultProject.toDoItems);
+        this.view.removeTodoItem = (todoItem) => {
+            const id = this.currentProject.toDoItems.findIndex(item => item.id === todoItem.id);
+            console.log(id);
+            if (id !== -1) {
+                this.currentProject.toDoItems.splice(id, 1);
+            }
+            this.view.renderTodos(this.currentProject.toDoItems);
+        }
 
         this.view.onSubmitItem = (title, priority) => {
             if (this.currentProject) {
@@ -63,7 +75,7 @@ export class PageController {
             
             this.view.renderProjectList(projectsArray);
             this.view.renderTodos(newProject.toDoItems);
-            
+
             input.value = '';
             dueDate.value = '';
             dialog.close();
