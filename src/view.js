@@ -1,6 +1,4 @@
-import { add } from "date-fns";
 import * as DOM from "./DOM.js"
-import { projectsArray } from "./data.js";
 
 export class ListView {
     constructor() {
@@ -78,7 +76,6 @@ export class ListView {
     }
 
     addProjectTitleToContent(projectTitle, due) {
-        const sidebarNavigationBtn = document.querySelector('.sidebar-navigation-btn');
         const currentProjectTitle = document.querySelector('#current-project-title');
         currentProjectTitle.innerHTML = '';
         this.projectTitleElement = DOM.createElement('h2', undefined, 'current-project-title', `Current Project: ${projectTitle}`);
